@@ -12,10 +12,10 @@ import Marvet.AbstractComponent.AbstractComponent;
 import net.sourceforge.tess4j.TesseractException;
 import org.testng.Assert;
 
-public class InspectionRequest extends AbstractComponent {
+public class InspectionRequestTemp extends AbstractComponent {
 	WebDriver driver;
 
-	public InspectionRequest(WebDriver driver) {
+	public InspectionRequestTemp(WebDriver driver) {
 		super(driver);
 		this.driver = driver;
 		PageFactory.initElements(driver, this);

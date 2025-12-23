@@ -1,10 +1,14 @@
 package Mavet.PageObjects;
 
+import java.time.Duration;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import Marvet.AbstractComponent.AbstractComponent;
 
@@ -38,60 +42,82 @@ public class AssessmentCriteria extends AbstractComponent {
 	@FindBy(xpath = "//a[contains(normalize-space(), 'Ships Staff & MLC Compliance')]")
 	WebElement shipStaffTab;
 
-	@FindBy(xpath = "//span[contains(normalize-space(.), 'Vessel Performance')]")
+	@FindBy(css = ".la-angle-down")
 	WebElement vesselPerformanceTab;
 
 	@FindBy(xpath = "//span[text()='Saved successfully.']")
 	WebElement successMsg;
 
-	@FindBy(linkText = "Terminal Performance Report")
-	WebElement terminalPerformance;
+	@FindBy(linkText = "OVID Inspection Report")
+	WebElement ovidInspection;
 
-	@FindBy(linkText = "MER Render")
-	WebElement merRender;
+	@FindBy(linkText = "Pre Hire / Pre-Mobilization Inspection Report")
+	WebElement preHire;
 
-	@FindBy(linkText = "MER Line")
-	WebElement merLine;
+	@FindBy(linkText = "Condition Suitability Inspection")
+	WebElement conditionSuitability;
 
-	@FindBy(linkText = "MER Gas")
-	WebElement merGas;
+	@FindBy(linkText = "Small Craft Inspection Report")
+	WebElement smallCraft;
 
-	@FindBy(linkText = "MER Maintain")
-	WebElement merMaintain;
-	
+	@FindBy(linkText = "Hygiene Inspection Report")
+	WebElement hygieneInspection;
+
 	@FindBy(xpath = "//span[contains(normalize-space(.), 'Port State Control')]")
 	WebElement portState;
-	
+
 	@FindBy(xpath = "//span[text()='PSC Compliance comments saved']")
-	WebElement portStateSuccessmsg;	
-	
+	WebElement portStateSuccessmsg;
+
 	@FindBy(xpath = "//button[text()=' Save Comment ']")
 	WebElement saveBtn;
-	
+
 	@FindBy(xpath = "//span[text()=' Previous PSC requirements met ']")
 	WebElement pcsRequirementCheckbox;
-	
+
 	@FindBy(linkText = "Incident History")
 	WebElement incidentHistory;
-	
+
 	@FindBy(xpath = "//span[text()='Incident History Compliance comments saved']")
-	WebElement incidentHistorySuccessmsg;	
-	
+	WebElement incidentHistorySuccessmsg;
+
 	@FindBy(xpath = "//span[text()=' Previous Incident History requirements met ']")
 	WebElement incidenHistoryCheckbox;
-	
-	@FindBy(linkText = "BVIQ Feedback")
-	WebElement bviqFeedback;
 
-	@FindBy(linkText = "TVAQ Feedback")
-	WebElement tvaqFeedback;
+	@FindBy(linkText = "Seafarer Training Matrix")
+	WebElement seafarerTraining;
+
+	@FindBy(linkText = "License to Operate (Non-Brunei Flag Vessels)")
+	WebElement licenseToOperate;
+
+	@FindBy(linkText = "Environmental Protection and Management Act")
+	WebElement managementAct;
+
+	@FindBy(linkText = "Radiation Protection Order")
+	WebElement radiationProtection;
+
+	@FindBy(linkText = "Class Survey Status Report")
+	WebElement classSurvey;
+
+	@FindBy(linkText = "Special Survey Report")
+	WebElement specialSurvey;
+
+	@FindBy(linkText = "Ultrasonic Thickness Measurement Report")
+	WebElement ultrasonic;
+
+	@FindBy(linkText = "Dry-dock Report")
+	WebElement dryDock;
 
 	public void assessmentCriteria() throws InterruptedException {
-		String vesselNum = "1125025";
+		String vesselNum = "1124225";
 		VettingManagement management = new VettingManagement(driver);
 		management.manageVetting(vesselNum);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ngx-spinner-overlay")));
+		wait.until(ExpectedConditions
+				.elementToBeClickable(By.xpath("//span[contains(normalize-space(.), 'Vessel Performance')]")));
 //		waitForWebElementToAppear(loadVesselDetails);
-		Thread.sleep(2000);
+//		Thread.sleep(2000);
 	}
 
 	public void classStatus() {
@@ -101,7 +127,7 @@ public class AssessmentCriteria extends AbstractComponent {
 		commentBox.sendKeys("This is a test Class Status");
 		saveCommentBtn.click();
 		waitForWebElementToAppear(successMsg);
-		waitForWebElementToDisappear(successMsg);
+//		waitForWebElementToDisappear(successMsg);
 	}
 
 	public void shipStaff() {
@@ -111,67 +137,176 @@ public class AssessmentCriteria extends AbstractComponent {
 		commentBox.sendKeys("This is a test Feedback");
 		saveCommentBtn.click();
 		waitForWebElementToAppear(successMsg);
-		waitForWebElementToDisappear(successMsg);
+//		waitForWebElementToDisappear(successMsg);
 	}
 
-	public void terminalPerformanceReport() {
+	public void ovidInspectionReport() throws InterruptedException {
+		Thread.sleep(1000);
 		vesselPerformanceTab.click();
-		terminalPerformance.click();
+		ovidInspection.click();
 		compliantCheckbox.click();
 		fileUpload.sendKeys("C:\\Users\\khans\\Desktop\\sample.jpg");
-		commentBox.sendKeys("This is a test Terminal Performance Report");
+		commentBox.sendKeys("This is a test OVID Inspection Report");
 		saveCommentBtn.click();
 		waitForWebElementToAppear(successMsg);
-		waitForWebElementToDisappear(successMsg);
+//		waitForWebElementToDisappear(successMsg);
 	}
 
-	public void merRender() {
+	public void preHireMobilizationReport() throws InterruptedException {
+		Thread.sleep(1000);
 		vesselPerformanceTab.click();
-		merRender.click();
+		preHire.click();
 		waitForWebElementToAppear(compliantCheckbox);
 		compliantCheckbox.click();
 		fileUpload.sendKeys("C:\\Users\\khans\\Desktop\\sample.jpg");
 		commentBox.sendKeys("This is a test Mer Render");
 		saveCommentBtn.click();
 		waitForWebElementToAppear(successMsg);
-		waitForWebElementToDisappear(successMsg);
+//		waitForWebElementToDisappear(successMsg);
 	}
 
-	public void merLine() {
+	public void conditionSuitabilityInspection() throws InterruptedException {
+		Thread.sleep(1000);
 		vesselPerformanceTab.click();
-		merLine.click();
+		conditionSuitability.click();
 		waitForWebElementToAppear(compliantCheckbox);
 		compliantCheckbox.click();
 		fileUpload.sendKeys("C:\\Users\\khans\\Desktop\\sample.jpg");
-		commentBox.sendKeys("This is a test Mer Line");
+		commentBox.sendKeys("This is a test Condition Suitability");
 		saveCommentBtn.click();
 		waitForWebElementToAppear(successMsg);
-		waitForWebElementToDisappear(successMsg);
+//		waitForWebElementToDisappear(successMsg);
 	}
 
-	public void merGas() {
+	public void smallCraftInspectionReport() throws InterruptedException {
+		Thread.sleep(1000);
 		vesselPerformanceTab.click();
-		merGas.click();
+		smallCraft.click();
 		waitForWebElementToAppear(compliantCheckbox);
 		compliantCheckbox.click();
 		fileUpload.sendKeys("C:\\Users\\khans\\Desktop\\sample.jpg");
-		commentBox.sendKeys("This is a test Mer Gas");
+		commentBox.sendKeys("This is a test Small Craft Report");
 		saveCommentBtn.click();
 		waitForWebElementToAppear(successMsg);
-		waitForWebElementToDisappear(successMsg);	}
+//		waitForWebElementToDisappear(successMsg);
+	}
 
-	public void merMaintain() {
+	public void hygieneInspectionReport() throws InterruptedException {
+		Thread.sleep(1000);
 		vesselPerformanceTab.click();
-		merMaintain.click();
+		hygieneInspection.click();
 		waitForWebElementToAppear(compliantCheckbox);
 		compliantCheckbox.click();
 		fileUpload.sendKeys("C:\\Users\\khans\\Desktop\\sample.jpg");
-		commentBox.sendKeys("This is a test Mer Maintain");
+		commentBox.sendKeys("This is a test Hygiene Inspection Report");
 		saveCommentBtn.click();
 		waitForWebElementToAppear(successMsg);
-		waitForWebElementToDisappear(successMsg);
+//		waitForWebElementToDisappear(successMsg);
 	}
-	
+
+	public void seafarerTrainingMatrix() throws InterruptedException {
+		vesselPerformanceTab.click();
+		seafarerTraining.click();
+		waitForWebElementToAppear(compliantCheckbox);
+		compliantCheckbox.click();
+		fileUpload.sendKeys("C:\\Users\\khans\\Desktop\\sample.jpg");
+		commentBox.sendKeys("This is a test Seafarer Training Matrix");
+		saveCommentBtn.click();
+		waitForWebElementToAppear(successMsg);
+//		waitForWebElementToDisappear(successMsg);
+	}
+
+	public void licenseToOperate() throws InterruptedException {
+		Thread.sleep(1000);
+		vesselPerformanceTab.click();
+		licenseToOperate.click();
+		waitForWebElementToAppear(compliantCheckbox);
+		compliantCheckbox.click();
+		fileUpload.sendKeys("C:\\Users\\khans\\Desktop\\sample.jpg");
+		commentBox.sendKeys("This is a test License To Operate");
+		saveCommentBtn.click();
+		waitForWebElementToAppear(successMsg);
+//		waitForWebElementToDisappear(successMsg);
+	}
+
+	public void environmentalProtectionandManagementAct() throws InterruptedException {
+		Thread.sleep(1000);
+		vesselPerformanceTab.click();
+		managementAct.click();
+		waitForWebElementToAppear(compliantCheckbox);
+		compliantCheckbox.click();
+		fileUpload.sendKeys("C:\\Users\\khans\\Desktop\\sample.jpg");
+		commentBox.sendKeys("This is a test Environmental Protection and Management Act");
+		saveCommentBtn.click();
+		waitForWebElementToAppear(successMsg);
+//		waitForWebElementToDisappear(successMsg);
+	}
+
+	public void radiationProtectionOrder() throws InterruptedException {
+		Thread.sleep(1000);
+		vesselPerformanceTab.click();
+		radiationProtection.click();
+		waitForWebElementToAppear(compliantCheckbox);
+		compliantCheckbox.click();
+		fileUpload.sendKeys("C:\\Users\\khans\\Desktop\\sample.jpg");
+		commentBox.sendKeys("This is a test Environmental Protection and Management Act");
+		saveCommentBtn.click();
+		waitForWebElementToAppear(successMsg);
+//		waitForWebElementToDisappear(successMsg);
+	}
+
+	public void classSurveyStatusReport() throws InterruptedException {
+		Thread.sleep(1000);
+		vesselPerformanceTab.click();
+		classSurvey.click();
+		waitForWebElementToAppear(compliantCheckbox);
+		compliantCheckbox.click();
+		fileUpload.sendKeys("C:\\Users\\khans\\Desktop\\sample.jpg");
+		commentBox.sendKeys("This is a test Class Survey Status");
+		saveCommentBtn.click();
+		waitForWebElementToAppear(successMsg);
+//		waitForWebElementToDisappear(successMsg);
+	}
+
+	public void specialSurveyReport() throws InterruptedException {
+		Thread.sleep(1000);
+		vesselPerformanceTab.click();
+		specialSurvey.click();
+		waitForWebElementToAppear(compliantCheckbox);
+		compliantCheckbox.click();
+		fileUpload.sendKeys("C:\\Users\\khans\\Desktop\\sample.jpg");
+		commentBox.sendKeys("This is a test Special Survey Report");
+		saveCommentBtn.click();
+		waitForWebElementToAppear(successMsg);
+//		waitForWebElementToDisappear(successMsg);
+	}
+
+	public void ultrasonicThicknessMeasurementReport() throws InterruptedException {
+		Thread.sleep(1000);
+		vesselPerformanceTab.click();
+		ultrasonic.click();
+		waitForWebElementToAppear(compliantCheckbox);
+		compliantCheckbox.click();
+		fileUpload.sendKeys("C:\\Users\\khans\\Desktop\\sample.jpg");
+		commentBox.sendKeys("This is a test Ultrasonic Thickness Measurement Report");
+		saveCommentBtn.click();
+		waitForWebElementToAppear(successMsg);
+//		waitForWebElementToDisappear(successMsg);
+	}
+
+	public void drydockReport() throws InterruptedException {
+		Thread.sleep(1000);
+		vesselPerformanceTab.click();
+		dryDock.click();
+		waitForWebElementToAppear(compliantCheckbox);
+		compliantCheckbox.click();
+		fileUpload.sendKeys("C:\\Users\\khans\\Desktop\\sample.jpg");
+		commentBox.sendKeys("This is a test Dry-dock Report");
+		saveCommentBtn.click();
+		waitForWebElementToAppear(successMsg);
+//		waitForWebElementToDisappear(successMsg);
+	}
+
 	public void portStateControl() {
 //		vesselPerformanceTab.click();
 		portState.click();
@@ -183,7 +318,7 @@ public class AssessmentCriteria extends AbstractComponent {
 		waitForWebElementToAppear(portStateSuccessmsg);
 		waitForWebElementToDisappear(portStateSuccessmsg);
 	}
-	
+
 	public void incidentHistory() {
 //		vesselPerformanceTab.click();
 		incidentHistory.click();
@@ -194,30 +329,6 @@ public class AssessmentCriteria extends AbstractComponent {
 		saveBtn.click();
 		waitForWebElementToAppear(incidentHistorySuccessmsg);
 		waitForWebElementToDisappear(incidentHistorySuccessmsg);
-	}
-
-	public void bviqFeedback() {
-		vesselPerformanceTab.click();
-		bviqFeedback.click();
-		waitForWebElementToAppear(compliantCheckbox);
-		compliantCheckbox.click();
-		fileUpload.sendKeys("C:\\Users\\khans\\Desktop\\sample.jpg");
-		commentBox.sendKeys("This is a test BVIQ Feedback");
-		saveCommentBtn.click();
-		waitForWebElementToAppear(successMsg);
-		waitForWebElementToDisappear(successMsg);
-	}
-
-	public void tvaqFeedback() {
-		vesselPerformanceTab.click();
-		tvaqFeedback.click();
-		waitForWebElementToAppear(compliantCheckbox);
-		compliantCheckbox.click();
-		fileUpload.sendKeys("C:\\Users\\khans\\Desktop\\sample.jpg");
-		commentBox.sendKeys("This is a test TVAQ Feedback");
-		saveCommentBtn.click();
-		waitForWebElementToAppear(successMsg);
-		waitForWebElementToDisappear(successMsg);
 	}
 
 }

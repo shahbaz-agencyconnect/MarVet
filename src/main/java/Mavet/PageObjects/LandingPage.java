@@ -26,7 +26,7 @@ public class LandingPage extends AbstractComponent {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
-
+	
 	@FindBy(xpath = "// a[@href='/account/login']")
 	WebElement clientArealoginBtn;
 
@@ -59,6 +59,7 @@ public class LandingPage extends AbstractComponent {
 
 	public void loginApplication(String userName, String passWord)
 			throws IOException, TesseractException, InterruptedException {
+
 		waitForWebElementToAppear(loadApp);
 		clientArealoginBtn.click();
 		username.sendKeys(userName);

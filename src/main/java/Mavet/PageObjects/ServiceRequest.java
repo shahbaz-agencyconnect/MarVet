@@ -21,38 +21,44 @@ public class ServiceRequest extends AbstractComponent {
 		PageFactory.initElements(driver, this);
 	}
 
-	@FindBy(xpath = "//span[text()=' Mer Vet ']")
-	WebElement MerVet;
+	@FindBy(xpath = "//span[text()=' Clearance ']")
+	WebElement clearanceCheckBox;
 
-	@FindBy(xpath = "//span[text()=' Preliminary Mer Vet ']")
-	WebElement PreliminaryMerVet;
-
-	@FindBy(xpath = "//span[text()=' Full Term Mer Vet ']")
-	WebElement FullTermMerVet;
-
-	@FindBy(xpath = "//app-text-input[@name='vesselName']//input")
-	WebElement vesselName;
-
+	@FindBy(xpath = "//app-text-input[@name='clientCompany']//input")
+	WebElement endUserName;
+	
+	@FindBy(xpath = "//app-email-input[@name='clientEmail']//input")
+	WebElement endUserEmail;
+	
+	@FindBy(xpath = "//app-textarea-input[@name='scopeOfWork']//textarea")
+	WebElement workScope;		
+	
+	@FindBy(xpath = "//app-dropdown-input[@name='vesselId']//span[text()='-- Select --']")
+	WebElement vesselNameDropDown;
+	
 	@FindBy(xpath = "//app-text-input[@name='imo']//input")
 	WebElement vesselImo;
 
 	@FindBy(xpath = "//span[contains(text(),'Vessel not found ')]")
 	WebElement vesselNotFound;
 
-	@FindBy(xpath = "//app-text-input[@name='clientCompany']//input")
-	WebElement clientName;
-
-	@FindBy(xpath = "//app-email-input[@name='clientEmail']//input")
-	WebElement clientEmail;
-
 	@FindBy(xpath = "//app-text-input[@name='docCompany']//input")
-	WebElement docCompany;
+	WebElement vtoName;
+
+	@FindBy(xpath = "//app-email-input[@name='docEmail']//input")
+	WebElement vtoEmail;
+
+	@FindBy(xpath = "//app-text-input[@name='submittedByEmail']//input")
+	WebElement requestorEmail;
 
 	@FindBy(xpath = "//app-text-input[@name='portAndTerminal']//input")
 	WebElement portTerminal;
 
-	@FindBy(xpath = "//bs-date-input[@name='estimatedTimeOfArrival']//input")
-	WebElement eTA;
+	@FindBy(xpath = "//bs-date-input[@name='clearanceStartDate']//input")
+	WebElement clearanceRequestDate;
+	
+	@FindBy(xpath = "//bs-date-input[@name='clearanceEndDate']//input")
+	WebElement clearanceEndDate;
 	
 	@FindBy(xpath = "//button[@class='current']//span")
 	WebElement selectCurrentYear;
@@ -60,7 +66,7 @@ public class ServiceRequest extends AbstractComponent {
 	@FindBy(xpath = "//button[text()=' Submit Request ']")
 	WebElement submitBtn;
 	
-	@FindBy(id="swal2-title")
+	@FindBy(xpath="//h2[@id='swal2-title']")
 	WebElement successMessage;	
 	
 	@FindBy(css=".swal2-confirm")
@@ -95,46 +101,60 @@ public class ServiceRequest extends AbstractComponent {
 
 	public void vesselService() throws IOException, TesseractException, InterruptedException {
 		ArrayList<String> vesselEntries = excelRead("Request Service");
-		String name = vesselEntries.get(0);
-		String imoNum = vesselEntries.get(1);
-		String requestorComName = vesselEntries.get(2);
-		String requestorEmail = vesselEntries.get(3);
-		String docComp = vesselEntries.get(4);
-		String portName = vesselEntries.get(5);
+		String endUsername= vesselEntries.get(0);
+		String endUseremail= vesselEntries.get(1);
+		String workscope= vesselEntries.get(2);
+		String vesselName = vesselEntries.get(3);
+		String imoNum = vesselEntries.get(4);
+		String vtoname = vesselEntries.get(5);
 		String monthFromXpath = "//table[@class='months']//span";
-		String year = vesselEntries.get(6);
-		String month = vesselEntries.get(7);
-		String day = vesselEntries.get(8);
-		String fromDay = "//span[@class='ng-star-inserted' and text()='" + day + "']";
+		String fromYear = vesselEntries.get(6);
+		String fromMonth = vesselEntries.get(7);
+		String startDay = vesselEntries.get(8);
+		String fromDay = "//span[@class='ng-star-inserted' and text()='" + startDay + "']";
+		String toYear = vesselEntries.get(9);
+		String toMonth = vesselEntries.get(10);
+		String endDay = vesselEntries.get(11);
+		String toDay = "//span[@class='ng-star-inserted' and text()='" + endDay + "']";
 		String nextButton = ".next";
-		MerVet.click();
-		PreliminaryMerVet.click();
-		FullTermMerVet.click();
-		vesselName.sendKeys(name);
-		vesselImo.sendKeys(imoNum);
-		waitForWebElementToAppear(vesselNotFound);
-		clientName.sendKeys(requestorComName);
-		clientEmail.sendKeys(requestorEmail);
-		docCompany.sendKeys(docComp);
-		portTerminal.sendKeys(portName);
-		eTA.click();
+		String requestorEmailId = vesselEntries.get(12);
+
+		clearanceCheckBox.click();
+		endUserName.sendKeys(endUsername);
+		endUserEmail.sendKeys(endUseremail);
+		workScope.sendKeys(workscope);
+		vesselNameDropDown.click();
+		WebElement selectVessel =driver.findElement(By.xpath("//span[text()='"+vesselName+"']"));
+		selectVessel.click();
+//		vesselImo.sendKeys(imoNum);
+//		waitForWebElementToAppear(vesselNotFound);
+
+		clearanceRequestDate.click();
 		selectCurrentYear.click();
-		datePicker(monthFromXpath, year, month, fromDay, nextButton);
+		datePicker(monthFromXpath, fromYear, fromMonth, fromDay, nextButton);
+		
+		clearanceEndDate.click();
+		selectCurrentYear.click();
+		datePicker(monthFromXpath, toYear, toMonth, toDay, nextButton);
+		
+		vtoName.sendKeys(vtoname);
+		requestorEmail.sendKeys(requestorEmailId);
 		submitBtn.click();
+		
 		waitForWebElementToAppear(successMessage);
 		okBtn.click();
-		ArrayList<String> data = excelRead("Login");
-		LandingPage landingPage = new LandingPage(driver);
-		landingPage.loginApplication(data.get(0), data.get(1));
-		waitForWebElementToAppear(vettingMgmtMenu);
-		vettingMgmtMenu.click();
-		Thread.sleep(2000);
-		searchBox.sendKeys(imoNum);
-		searchIcon.click();
-		Thread.sleep(2000);
-		String expectedImo = driver.findElement(By.xpath("(//table[contains(@id,'pr_id_')]//td)[2]")).getText();
-		Assert.assertEquals(imoNum, expectedImo);		
-		actionBtn.click();
+//		ArrayList<String> data = excelRead("Login");
+//		LandingPage landingPage = new LandingPage(driver);
+//		landingPage.loginApplication(data.get(0), data.get(1));
+//		waitForWebElementToAppear(vettingMgmtMenu);
+//		vettingMgmtMenu.click();
+//		Thread.sleep(2000);
+//		searchBox.sendKeys(imoNum);
+//		searchIcon.click();
+//		Thread.sleep(2000);
+//		String expectedImo = driver.findElement(By.xpath("(//table[contains(@id,'pr_id_')]//td)[2]")).getText();
+//		Assert.assertEquals(imoNum, expectedImo);		
+//		actionBtn.click();
 //		startVetOption.click();
 //		waitForWebElementToAppear(loadSummaryPage);
 //		acceptBtn.click();

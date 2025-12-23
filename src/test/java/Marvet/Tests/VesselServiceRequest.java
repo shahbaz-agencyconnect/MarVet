@@ -14,5 +14,4 @@ public class VesselServiceRequest extends BaseTest{
 		ServiceRequest serviceRequest = new ServiceRequest(driver);
 		serviceRequest.vesselService();
 	}
-
 }

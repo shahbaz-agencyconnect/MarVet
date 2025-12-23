@@ -18,8 +18,8 @@ public class VettingManagement extends AbstractComponent {
 	@FindBy(css = ".d-flex")
 	WebElement loadDashboard;
 	
-	@FindBy(xpath = "//span[text()='Vetting Management']")
-	WebElement vettingMgmtMenu;
+	@FindBy(xpath = "//span[text()='Clearance Management']")
+	WebElement clearanceMgmtMenu;
 	
 	@FindBy(xpath = "//input[@formcontrolname='filterText']")
 	WebElement searchBox;
@@ -47,8 +47,8 @@ public class VettingManagement extends AbstractComponent {
 	
 	public void manageVetting(String vesselNumber) throws InterruptedException {
 		waitForWebElementToAppear(loadDashboard);
-		waitForWebElementToAppear(vettingMgmtMenu);
-		vettingMgmtMenu.click();
+		waitForWebElementToAppear(clearanceMgmtMenu);
+		clearanceMgmtMenu.click();
 		Thread.sleep(2000);
 		searchBox.sendKeys(vesselNumber);
 		searchIcon.click();
