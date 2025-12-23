@@ -2,20 +2,20 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-12-22T17:48:29 IST" name="Default suite" finished-at="2025-12-22T17:50:05 IST" duration-ms="95331">
+  <suite started-at="2025-12-23T17:56:04 IST" name="Default suite" finished-at="2025-12-23T17:57:57 IST" duration-ms="113009">
     <groups>
     </groups>
-    <test started-at="2025-12-22T17:48:29 IST" name="Default test" finished-at="2025-12-22T17:50:05 IST" duration-ms="95331">
-      <class name="Marvet.Tests.UpdateInspectorReviewer">
-        <test-method is-config="true" signature="launchApplication()[pri:0, instance:Marvet.Tests.UpdateInspectorReviewer@6989da5e]" started-at="2025-12-22T17:48:30 IST" name="launchApplication" finished-at="2025-12-22T17:48:53 IST" duration-ms="23907" status="PASS">
+    <test started-at="2025-12-23T17:56:04 IST" name="Default test" finished-at="2025-12-23T17:57:57 IST" duration-ms="113009">
+      <class name="Marvet.Tests.UploadInspectorDocument">
+        <test-method is-config="true" signature="launchApplication()[pri:0, instance:Marvet.Tests.UploadInspectorDocument@6989da5e]" started-at="2025-12-23T17:56:06 IST" name="launchApplication" finished-at="2025-12-23T17:56:38 IST" duration-ms="32083" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- launchApplication -->
-        <test-method signature="updateReviewer()[pri:0, instance:Marvet.Tests.UpdateInspectorReviewer@6989da5e]" started-at="2025-12-22T17:48:54 IST" name="updateReviewer" finished-at="2025-12-22T17:50:05 IST" duration-ms="71040" status="PASS">
+        <test-method signature="uploadDocument()[pri:0, instance:Marvet.Tests.UploadInspectorDocument@6989da5e]" started-at="2025-12-23T17:56:38 IST" name="uploadDocument" finished-at="2025-12-23T17:57:57 IST" duration-ms="79367" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- updateReviewer -->
-      </class> <!-- Marvet.Tests.UpdateInspectorReviewer -->
+        </test-method> <!-- uploadDocument -->
+      </class> <!-- Marvet.Tests.UploadInspectorDocument -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
