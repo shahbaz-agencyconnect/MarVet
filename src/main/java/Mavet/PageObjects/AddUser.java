@@ -8,6 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.annotations.Test;
 
 import Marvet.AbstractComponent.AbstractComponent;
 
@@ -58,8 +59,11 @@ public class AddUser extends AbstractComponent {
 
 	@FindBy(xpath = "//span[text()='Save']")
 	WebElement saveBtn;
+	
+	@FindBy(xpath = "//span[text()='Saved successfully.']")
+	WebElement successMsg;
 
-	public void addnewUser() throws FileNotFoundException {
+	public void addnewUser() throws FileNotFoundException, InterruptedException {
 		waitForWebElementToAppear(loadDashboard);
 		waitForWebElementToAppear(userMenu);
 		userMenu.click();
@@ -79,5 +83,6 @@ public class AddUser extends AbstractComponent {
 		selectTerminal.click();
 		uncheckPwdReset.click();
 		saveBtn.click();
+		waitForWebElementToAppear(successMsg);
 	}
 }

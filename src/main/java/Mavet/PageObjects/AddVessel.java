@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.annotations.Test;
 
 import Marvet.AbstractComponent.AbstractComponent;
 
@@ -29,14 +30,17 @@ public class AddVessel extends AbstractComponent{
 	@FindBy(xpath = "//input[@placeholder='Vessel Name']")
 	WebElement vesselName;
 
-	@FindBy(xpath = "//input[@placeholder='IMO']")
+	@FindBy(xpath = "//input[@placeholder='IMO/Reg Number']")
 	WebElement iMO;
 
 	@FindBy(xpath = "//input[@placeholder='DWT']")
 	WebElement dwt;
 
-	@FindBy(xpath = "//input[@placeholder='Vessel Type']")
+	@FindBy(xpath = "//span[text()='Select Vessel Type']")
 	WebElement vesselType;
+	
+	@FindBy(xpath = "//span[text()='Work Boat']")
+	WebElement selectVessel;	
 
 	@FindBy(xpath = "//input[@placeholder='Year of Build']")
 	WebElement yearOfBuild;
@@ -46,9 +50,15 @@ public class AddVessel extends AbstractComponent{
 
 	@FindBy(xpath = "//input[@placeholder='Class']")
 	WebElement className;
+	
+	@FindBy(xpath = "//input[@placeholder='Contract Holder Email']")
+	WebElement contractHolder;
 
 	@FindBy(xpath = "//span[text()='Save']")
 	WebElement saveBtn;
+
+	@FindBy(xpath = "//span[text()='Successfully added']")
+	WebElement successMsg;
 	
 	public void addVessel() throws FileNotFoundException {
 		AbstractComponent abs = new AbstractComponent(driver);
@@ -61,6 +71,7 @@ public class AddVessel extends AbstractComponent{
 		String buildYear = data.get(4);
 		String nationFlag = data.get(5);
 		String clsName = data.get(6);
+		String contractHolderEmail = data.get(7);
 		waitForWebElementToAppear(vesselManagement);
 		vesselManagement.click();
 		addVessel.click();
@@ -68,10 +79,13 @@ public class AddVessel extends AbstractComponent{
 		vesselName.sendKeys(name);
 		iMO.sendKeys(imo);
 		dwt.sendKeys(vesselDwt);
-		vesselType.sendKeys(type);
+		vesselType.click();
+		selectVessel.click();
 		yearOfBuild.sendKeys(buildYear);
 		flag.sendKeys(nationFlag);
 		className.sendKeys(clsName);
+		contractHolder.sendKeys(contractHolderEmail);
 		saveBtn.click();
+		waitForWebElementToAppear(successMsg);
 	}
 }

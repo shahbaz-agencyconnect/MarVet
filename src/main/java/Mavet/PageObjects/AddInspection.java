@@ -9,6 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.annotations.Test;
 
 import Marvet.AbstractComponent.AbstractComponent;
 
@@ -60,7 +61,10 @@ public class AddInspection extends AbstractComponent {
 	WebElement selectYear;
 	
 	@FindBy(xpath = "//span[text()='Save']")
-	WebElement saveBtn;		
+	WebElement saveBtn;
+	
+	@FindBy(xpath = "//span[text()='Saved successfully.']")
+	WebElement successMsg;
 	
 	public void addInspection() throws InterruptedException, FileNotFoundException {
 		AbstractComponent abstractComponent = new AbstractComponent(driver);
@@ -143,7 +147,7 @@ public class AddInspection extends AbstractComponent {
 		inspectorName.click();
 		waitForWebElementToDisappear(listLoader);
 
-		//Port List
+		//Inspector List
 		List<WebElement> inspectorList = driver.findElements(By.cssSelector(".ng-option"));
 		for(WebElement expectedInspector:inspectorList) {
 			if(expectedInspector.getText().equals(inspector)) {
@@ -155,5 +159,6 @@ public class AddInspection extends AbstractComponent {
 		selectYear.click();
 		datePicker(monthFromXpath, year, month, fromDay, nextButton);
 		saveBtn.click();
+		waitForWebElementToAppear(successMsg);
 	}
 }

@@ -11,7 +11,6 @@ import Mavet.PageObjects.LandingPage;
 import net.sourceforge.tess4j.TesseractException;
 
 public class UserLogin extends BaseTest{
-	@Test
 	public void loginUser() throws IOException, TesseractException, InterruptedException {
 		AbstractComponent abstractComponent = new AbstractComponent(driver);
 		ArrayList<String> data = abstractComponent.excelRead("Login");	

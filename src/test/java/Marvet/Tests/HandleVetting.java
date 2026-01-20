@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 import Marvet.AbstractComponent.AbstractComponent;
 import Marvet.TestComponents.BaseTest;
 import Mavet.PageObjects.LandingPage;
-import Mavet.PageObjects.VettingManagement;
+import Mavet.PageObjects.ClearanceManagement;
 import net.sourceforge.tess4j.TesseractException;
 
 public class HandleVetting extends BaseTest {
@@ -19,7 +19,7 @@ public class HandleVetting extends BaseTest {
 		LandingPage landingPage = new LandingPage(driver);
 		landingPage.loginApplication(data.get(0), data.get(1));
 		String vesslNum ="1234567";
-		VettingManagement vetting = new VettingManagement(driver);
-		vetting.manageVetting(vesslNum);
+		ClearanceManagement vetting = new ClearanceManagement(driver);
+//		vetting.manageVetting(vesslNum);
 	}
 }

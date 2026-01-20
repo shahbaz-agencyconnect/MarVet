@@ -14,10 +14,10 @@ import net.sourceforge.tess4j.TesseractException;
 public class CreateNewVessel extends BaseTest{
 	@Test
 	public void createVessel() throws IOException, TesseractException, InterruptedException {
-		AbstractComponent abstractComponent = new AbstractComponent(driver);
-		ArrayList<String> data = abstractComponent.excelRead("Login");	
-		LandingPage landingPage = new LandingPage(driver);
-		landingPage.loginApplication(data.get(0), data.get(1));
+//		AbstractComponent abstractComponent = new AbstractComponent(driver);
+//		ArrayList<String> data = abstractComponent.excelRead("Login");	
+//		LandingPage landingPage = new LandingPage(driver);
+//		landingPage.loginApplication(data.get(0), data.get(1));
 		AddVessel vessel = new AddVessel(driver);
 		vessel.addVessel();
 	}

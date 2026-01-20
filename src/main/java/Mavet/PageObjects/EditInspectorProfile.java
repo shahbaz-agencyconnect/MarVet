@@ -32,14 +32,14 @@ public class EditInspectorProfile extends AbstractComponent {
 	@FindBy(xpath = "//input[@role='combobox']")
 	WebElement reviewerDropdown;
 	
-	@FindBy(xpath = "//span[text()='admin (admin@defaulttenant.com)']")
+	@FindBy(xpath = "//span[text()='Josefa  (josefa54@yopmail.com)']")
 	WebElement selectReviewer;
 	
 	@FindBy(xpath = "//span[text()='Save']")
 	WebElement saveBtn;
 
 	public void editInspector() {
-		String userEmail = "clark.russel57@yopmail.com";
+		String userEmail = "nora.brakus@yopmail.com";
 		waitForWebElementToAppear(loadDashboard);
 		waitForWebElementToAppear(inspectorMgmt);
 		inspectorMgmt.click();

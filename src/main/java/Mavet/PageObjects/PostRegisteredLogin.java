@@ -43,7 +43,7 @@ public class PostRegisteredLogin extends AbstractComponent {
 	@FindBy(xpath = "//h1[text()='MER Assurance Login ']")
 	WebElement loginPage;	
 	
-	public void loginOnPostRegistration() throws FileNotFoundException {
+	public void loginOnPostRegistration() throws FileNotFoundException, InterruptedException {
 		AddUser user = new AddUser(driver);
 		user.addnewUser();
 		waitForWebElementToAppear(successMsg);

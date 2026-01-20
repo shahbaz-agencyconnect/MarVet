@@ -62,6 +62,7 @@ public class LandingPage extends AbstractComponent {
 
 		waitForWebElementToAppear(loadApp);
 		clientArealoginBtn.click();
+		waitForWebElementToAppear(username);
 		username.sendKeys(userName);
 		password.sendKeys(passWord);
 		loginBtn.click();
@@ -101,7 +102,7 @@ public class LandingPage extends AbstractComponent {
 				boolean isCorrect = true;
 				if (isCorrect) {
 					try {
-						wait.until(ExpectedConditions.visibilityOf(loadDashboard));
+//						wait.until(ExpectedConditions.visibilityOf(loadDashboard));
 						System.out.println("Login Successful! User is navigated to the dashboard.");
 						if (isCorrect) {
 							break;

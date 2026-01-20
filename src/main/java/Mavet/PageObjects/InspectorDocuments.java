@@ -51,19 +51,25 @@ public class InspectorDocuments extends AbstractComponent {
 	WebElement selectCurrentYear;
 	
 	@FindBy(css = ".ng-arrow-wrapper")
+	WebElement reviewedByDropdown;
+	
+	@FindBy(xpath = "//span[contains(text(),'Rajeev')]")
 	WebElement selectReviewedBy;	
+	
+	@FindBy(xpath = "//span[text()='Upload']")
+	WebElement uploadBtn;		
 	
 	public void inspectorDocument() throws InterruptedException {
 		String monthXpath="//span[contains(@class,'p-monthpicker-month')]";
-		String year="2025";
-		String month="12";
+		String year="2050";
+		String month="01";
 		String day = "30";
 		String fromDay = "//span[contains(@class, 'p-element') and not(contains(@class, 'p-disabled')) and text()='"+day+"']";		
 		String nextButton=".pi-chevron-right";
 		waitForWebElementToAppear(loadDashboard);
 		waitForWebElementToAppear(inspectorMgmt);
 		inspectorMgmt.click();
-		searchBox.sendKeys("clark.russel57@yopmail.com");
+		searchBox.sendKeys("nora.brakus@yopmail.com");
 		waitForWebElementToAppear(listLoad);
 		docIcon.click();
 		uploadDocBtn.click();
@@ -73,40 +79,8 @@ public class InspectorDocuments extends AbstractComponent {
 		selectCalendar.click();
 		selectCurrentYear.click();
 		selectExpiryDate(monthXpath, year, month, fromDay, nextButton);
+		reviewedByDropdown.click();
 		selectReviewedBy.click();
-	}
-	
-	// Date Picker
-	public void selectExpiryDate(String xPath, String selectYear, String selectMonth, String selectDay, String nextButton)
-			throws InterruptedException {
-
-		// Year select
-
-		while (true) {
-
-			List<WebElement> getyears = driver.findElements(By.cssSelector(".p-yearpicker-year"));
-			boolean yearFound = false;
-
-			for (WebElement yearElement : getyears) {
-				String year = yearElement.getText();
-				if (year.equals(selectYear) || year.equals(null)) {
-					yearElement.click();
-					yearFound = true;
-					break;
-				}
-			}
-			if (yearFound) {
-				break;
-			} else {
-				WebElement nextYearBtn = driver.findElement(By.cssSelector(nextButton));
-				nextYearBtn.click();
-			}
-		}
-
-		// Month select
-		driver.findElements(By.xpath(xPath)).get(Integer.parseInt(selectMonth) - 1).click();
-
-		// Days select
-		driver.findElement(By.xpath(selectDay)).click();
+		uploadBtn.click();
 	}
 }

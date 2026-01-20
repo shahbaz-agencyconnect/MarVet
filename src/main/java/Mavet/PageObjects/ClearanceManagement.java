@@ -7,10 +7,10 @@ import org.openqa.selenium.support.PageFactory;
 
 import Marvet.AbstractComponent.AbstractComponent;
 
-public class VettingManagement extends AbstractComponent {
+public class ClearanceManagement extends AbstractComponent {
 	WebDriver driver;
 
-	public VettingManagement(WebDriver driver) {
+	public ClearanceManagement(WebDriver driver) {
 		super(driver);
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
@@ -45,12 +45,12 @@ public class VettingManagement extends AbstractComponent {
 	@FindBy(css = ".swal2-confirm")
 	WebElement confirmBtn;
 	
-	public void manageVetting(String vesselNumber) throws InterruptedException {
+	public void manageVetting() throws InterruptedException {
 		waitForWebElementToAppear(loadDashboard);
 		waitForWebElementToAppear(clearanceMgmtMenu);
 		clearanceMgmtMenu.click();
 		Thread.sleep(2000);
-		searchBox.sendKeys(vesselNumber);
+		searchBox.sendKeys("9510412");
 		searchIcon.click();
 		Thread.sleep(2000);
 		actionBtn.click();

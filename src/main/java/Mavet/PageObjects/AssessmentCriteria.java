@@ -109,9 +109,9 @@ public class AssessmentCriteria extends AbstractComponent {
 	WebElement dryDock;
 
 	public void assessmentCriteria() throws InterruptedException {
-		String vesselNum = "1124225";
-		VettingManagement management = new VettingManagement(driver);
-		management.manageVetting(vesselNum);
+		String vesselNum = "9510412";
+		ClearanceManagement management = new ClearanceManagement(driver);
+//		management.manageVetting(vesselNum);
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ngx-spinner-overlay")));
 		wait.until(ExpectedConditions
