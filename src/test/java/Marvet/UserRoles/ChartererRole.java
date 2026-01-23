@@ -5,8 +5,11 @@ import org.testng.annotations.Test;
 
 import Marvet.InspectorManagementModule.InspectorManagement;
 import Marvet.Login.Login;
+import Marvet.PortManagementModule.PortManagement;
+import Marvet.TerminalChartererModule.TerminalCharter;
 import Marvet.UserModule.User;
-import VesselManagementModule.VesselManagement;
+import Marvet.VesselManagementModule.VesselManagement;
+import Matvet.VTOManagement.VTOManagement;
 
 public class ChartererRole extends Login{
 
@@ -25,17 +28,40 @@ public class ChartererRole extends Login{
 //		inspectionManagement.updateInspectorReviewer();
 //		inspectionManagement.inspectorDocUpload();
 //		inspectionManagement.editInspectorDocument();
+//		inspectionManagement.downloadDoc();
 //		inspectionManagement.deleteDocument();
 
 		//Vessel Management Module
 		VesselManagement vesselManage = new VesselManagement();
-		vesselManage.addNewVessel();
-		vesselManage.editVessel();
-		vesselManage.vesselDocUpload();
-		vesselManage.editVesselDocument();
-		vesselManage.downloadDoc();
-		vesselManage.deleteDocument();
-		vesselManage.deleteVessel();
+//		vesselManage.addNewVessel();
+//		vesselManage.editVessel();
+//		vesselManage.vesselDocUpload();
+//		vesselManage.editVesselDocument();
+//		vesselManage.downloadDoc();
+//		vesselManage.deleteDocument();
+//		vesselManage.deleteVessel();
+		
+		//Port Management Module
+		PortManagement portManage = new PortManagement();
+//		portManage.addNewPort();
+//		portManage.editPort();
+//		portManage.portDocUpload();
+//		portManage.editPortDocument();
+//		portManage.downloadDoc();
+//		portManage.deleteDocument();
+//		portManage.deletePort();
+		
+		//Terminal or Charter  Module
+		TerminalCharter termChart=new TerminalCharter();
+//		termChart.addNewTerminal();
+//		termChart.editTerminal();
+//		termChart.deleteTerminal();
+		
+		//VTO Management Module
+		VTOManagement vtoManage = new VTOManagement();
+		vtoManage.addVTO();
+		vtoManage.editVTO();
+		vtoManage.deleteVTO();
 	}
 
 }

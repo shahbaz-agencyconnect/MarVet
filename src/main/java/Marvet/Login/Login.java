@@ -213,4 +213,38 @@ public class Login {
 		// Days select
 		driver.findElement(By.xpath(selectDay)).click();
 	}
+	
+	// Date Picker
+	public void datePicker(String xPath, String selectYear, String selectMonth, String selectDay, String nextButton)
+			throws InterruptedException {
+
+		// Year select
+
+		while (true) {
+
+			List<WebElement> getyears = driver.findElements(By.xpath("//table[@class='years']//span"));
+			boolean yearFound = false;
+
+			for (WebElement yearElement : getyears) {
+				String year = yearElement.getText();
+				if (year.equals(selectYear) || year.equals(null)) {
+					yearElement.click();
+					yearFound = true;
+					break;
+				}
+			}
+			if (yearFound) {
+				break;
+			} else {
+				WebElement nextYearBtn = driver.findElement(By.cssSelector(nextButton));
+				nextYearBtn.click();
+			}
+		}
+
+		// Month select
+		driver.findElements(By.xpath(xPath)).get(Integer.parseInt(selectMonth) - 1).click();
+
+		// Days select
+		driver.findElement(By.xpath(selectDay)).click();
+	}
 }

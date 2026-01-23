@@ -50,6 +50,7 @@ public class User extends Login {
 		ArrayList<String> data = excelRead("Add User");
 		WebElement searchBox = driver.findElement(By.xpath("//input[@placeholder='Search user']"));
 		searchBox.sendKeys(data.get(2));
+		waitForWebElementToAppear(By.cssSelector(".fa-pen"));
 		waitForWebElementToAppear(By.xpath("//span[text()=' Total: 1 items ']"));
 		WebElement editIcon = driver.findElement(By.cssSelector(".fa-pen"));
 		editIcon.click();
@@ -65,6 +66,7 @@ public class User extends Login {
 //		ArrayList<String> data = excelRead("Add User");
 //		WebElement searchBox = driver.findElement(By.xpath("//input[@placeholder='Search user']"));
 //		searchBox.sendKeys(data.get(2));
+		waitForWebElementToAppear(By.cssSelector(".fa-trash-alt "));
 		waitForWebElementToAppear(By.xpath("//span[text()=' Total: 1 items ']"));
 		WebElement deleteUser = driver.findElement(By.cssSelector(".fa-trash-alt "));
 		deleteUser.click();

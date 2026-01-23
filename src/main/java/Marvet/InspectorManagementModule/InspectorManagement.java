@@ -15,6 +15,7 @@ public class InspectorManagement extends Login {
 		WebElement searchBox = driver.findElement(By.xpath("//input[@placeholder='Search inspector']"));
 		searchBox.sendKeys("ardella4@yopmail.com");
 		waitForWebElementToAppear(By.xpath("//span[text()=' Total: 1 items ']"));
+		waitForWebElementToAppear(By.cssSelector(".fa-pen"));
 		WebElement editIcon = driver.findElement(By.cssSelector(".fa-pen"));
 		editIcon.click();
 		WebElement reviewerDropdown = driver.findElement(By.xpath("//input[@role='combobox']"));
@@ -90,6 +91,13 @@ public class InspectorManagement extends Login {
 		waitForWebElementToAppear(By.xpath("//span[text()='Document has been updated']"));
 	}
 
+	public void downloadDoc() {
+		waitForWebElementToAppear(By.cssSelector(".fa-pencil-alt"));
+		waitForWebElementToAppear(By.cssSelector(".flaticon2-download"));
+		WebElement downloadIcon = driver.findElement(By.cssSelector(".flaticon2-download"));
+		downloadIcon.click();		
+		}
+	
 	public void deleteDocument() {
 
 		waitForWebElementToAppear(By.cssSelector(".fa-trash"));

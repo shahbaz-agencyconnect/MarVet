@@ -1,4 +1,4 @@
-package VesselManagementModule;
+package Marvet.VesselManagementModule;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -58,6 +58,9 @@ public class VesselManagement extends Login {
 
 		WebElement contractHolder = driver.findElement(By.xpath("//input[@placeholder='Contract Holder Email']"));
 		contractHolder.sendKeys(contractHolderEmail);
+		
+		WebElement activeToggleBtn = driver.findElement(By.id("isActive"));
+		activeToggleBtn.click();		
 
 		WebElement saveBtn = driver.findElement(By.xpath("//span[text()='Save']"));
 		saveBtn.click();
@@ -71,9 +74,11 @@ public class VesselManagement extends Login {
 		waitForWebElementToAppear(By.xpath("//input[contains(@placeholder,'vessel name')]"));
 		WebElement searchBox = driver.findElement(By.xpath("//input[contains(@placeholder,'vessel name')]"));
 		searchBox.sendKeys(imo);
+		
 		waitForWebElementToAppear(By.xpath("//span[text()=' Total: 1 items ']"));
-		waitForWebElementToAppear(By.cssSelector(".fa-pen"));
-		WebElement editIcon = driver.findElement(By.cssSelector(".fa-pen"));
+		waitForWebElementToAppear(By.cssSelector(".fa-ship "));
+		WebElement editIcon = driver
+				.findElement(By.cssSelector(".fa-pen"));
 		editIcon.click();
 		waitForWebElementToAppear(By.cssSelector(".modal-content"));
 		WebElement vesselName = driver.findElement(By.xpath("//input[@placeholder='Vessel Name']"));
@@ -111,33 +116,33 @@ public class VesselManagement extends Login {
 		docType.sendKeys("PDF");
 		WebElement docName = driver.findElement(By.xpath("//app-text-input[@name='docName']//input"));
 		docName.sendKeys("Test001");
-		String monthXpath = "//span[contains(@class,'p-monthpicker-month')]";
+		WebElement selectCalendar = driver.findElement(By.xpath("//bs-date-input[@name='docExpiryDate']//input"));
+		selectCalendar.click();
+		WebElement selectCurrentYear = driver.findElement(By.xpath("//button[@class='current']//span"));
+		selectCurrentYear.click();
+		
+		String monthXpath = "//table[@class='months']//span";
 		String year = "2026";
 		String month = "01";
-		String day = "30";
-		String fromDay = "//span[contains(@class, 'p-element') and not(contains(@class, 'p-disabled')) and text()='"
-				+ day + "']";
-		String nextButton = ".pi-chevron-right";
-		WebElement selectCalendar = driver.findElement(By.cssSelector(".p-datepicker-trigger"));
-		selectCalendar.click();
-		WebElement selectCurrentYear = driver.findElement(By.cssSelector(".p-datepicker-year "));
-		selectCurrentYear.click();
-		selectDate(monthXpath, year, month, fromDay, nextButton);
+		String date = "26";
+		String day = "//span[@class='ng-star-inserted' and text()='" + date + "']";
+		String nextButton = ".next";
+		datePicker(monthXpath, year, month, day, nextButton);
+		
 		WebElement reviewedByDropdown = driver
 				.findElement(By.xpath("//label[text()='Document Reviewed By ']/parent::div//input"));
 		reviewedByDropdown.click();
 		waitForWebElementToAppear(By.xpath("//span[contains(text(),'Rajeev')]"));
 		WebElement selectReviewedBy = driver.findElement(By.xpath("//span[contains(text(),'Rajeev')]"));
 		selectReviewedBy.click();
-		WebElement statusDropdown = driver
-				.findElement(By.xpath("//label[text()='Status ']/parent::div//input"));
+		WebElement statusDropdown = driver.findElement(By.xpath("//label[text()='Status ']/parent::div//input"));
 		statusDropdown.click();
-		
+
 		waitForWebElementToAppear(By.xpath("//span[text()='Eligible']"));
-		WebElement selectStatus= driver.findElement(By.xpath("//span[text()='Eligible']"));
+		WebElement selectStatus = driver.findElement(By.xpath("//span[text()='Eligible']"));
 		selectStatus.click();
-		
-		WebElement mmaComment= driver.findElement(By.xpath("//textarea[contains(@placeholder,'MMA')]"));
+
+		WebElement mmaComment = driver.findElement(By.xpath("//textarea[contains(@placeholder,'MMA')]"));
 		mmaComment.sendKeys("This is a test MMA comment");
 		WebElement uploadBtn = driver.findElement(By.xpath("//span[text()='Upload']"));
 		uploadBtn.click();
@@ -155,7 +160,8 @@ public class VesselManagement extends Login {
 		WebElement docCategoryDropdown = driver
 				.findElement(By.xpath("//label[text()='Document Category ']/parent::div//input"));
 		docCategoryDropdown.click();
-		WebElement selectDocCategory = driver.findElement(By.xpath("//span[text()='License to Operate (Non-Brunei Flag Vessel)']"));
+		WebElement selectDocCategory = driver
+				.findElement(By.xpath("//span[text()='License to Operate (Non-Brunei Flag Vessel)']"));
 		selectDocCategory.click();
 //		WebElement docType = driver.findElement(By.xpath("//app-text-input[@name='docType']//input"));
 //		docType.sendKeys("PDF");
@@ -179,15 +185,14 @@ public class VesselManagement extends Login {
 //		waitForWebElementToAppear(By.xpath("//span[contains(text(),'Rajeev')]"));
 //		WebElement selectReviewedBy = driver.findElement(By.xpath("//span[contains(text(),'Rajeev')]"));
 //		selectReviewedBy.click();
-		WebElement statusDropdown = driver
-				.findElement(By.xpath("//label[text()='Status ']/parent::div//input"));
+		WebElement statusDropdown = driver.findElement(By.xpath("//label[text()='Status ']/parent::div//input"));
 		statusDropdown.click();
-		
+
 		waitForWebElementToAppear(By.xpath("//span[text()='Eligible']"));
-		WebElement selectStatus= driver.findElement(By.xpath("//span[text()='Caution']"));
+		WebElement selectStatus = driver.findElement(By.xpath("//span[text()='Caution']"));
 		selectStatus.click();
-		
-		WebElement mmaComment= driver.findElement(By.xpath("//textarea[contains(@placeholder,'MMA')]"));
+
+		WebElement mmaComment = driver.findElement(By.xpath("//textarea[contains(@placeholder,'MMA')]"));
 		mmaComment.sendKeys(" Updated");
 		WebElement saveBtn = driver.findElement(By.xpath("(//span[text()='Save'])[2]"));
 		saveBtn.click();
@@ -195,16 +200,16 @@ public class VesselManagement extends Login {
 //		WebElement closeBtn = driver.findElement(By.xpath("//span[text()='Close']"));
 //		closeBtn.click();
 	}
-	
+
 	public void downloadDoc() {
 		waitForWebElementToAppear(By.cssSelector(".fa-pencil-alt"));
 		waitForWebElementToAppear(By.cssSelector(".flaticon2-download"));
 		WebElement downloadIcon = driver.findElement(By.cssSelector(".flaticon2-download"));
-		downloadIcon.click();		
+		downloadIcon.click();
 //		WebElement closeBtn = driver.findElement(By.xpath("//span[text()='Close']"));
 //		closeBtn.click();
-		}
-	
+	}
+
 	public void deleteDocument() {
 		waitForWebElementToAppear(By.cssSelector(".fa-trash"));
 		WebElement deleteIcon = driver.findElement(By.cssSelector(".fa-trash"));
@@ -213,8 +218,9 @@ public class VesselManagement extends Login {
 		confirmBtn.click();
 		waitForWebElementToAppear(By.xpath("//span[text()='Successfully deleted.']"));
 		WebElement closeBtn = driver.findElement(By.xpath("//span[text()='Close']"));
-		closeBtn.click();	
+		closeBtn.click();
 	}
+
 	public void deleteVessel() {
 
 //		waitForWebElementToAppear(By.xpath("//span[text()='Vessel Management']"));
