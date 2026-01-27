@@ -1,11 +1,15 @@
 package Marvet.VesselManagementModule;
 
 import java.io.FileNotFoundException;
+import java.time.Duration;
 import java.util.ArrayList;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import Marvet.Login.Login;
 
@@ -76,10 +80,11 @@ public class VesselManagement extends Login {
 		searchBox.sendKeys(imo);
 		
 		waitForWebElementToAppear(By.xpath("//span[text()=' Total: 1 items ']"));
-		waitForWebElementToAppear(By.cssSelector(".fa-ship "));
-		WebElement editIcon = driver
-				.findElement(By.cssSelector(".fa-pen"));
-		editIcon.click();
+		clickDesiredIcon(By.xpath("//a[.//i[contains(@class, 'fa-pen')]]"));
+		
+//		waitForWebElementToAppear(By.cssSelector(".fa-ship "));
+//		WebElement editIcon = driver.findElement(By.cssSelector(".fa-pen"));
+//		editIcon.click();
 		waitForWebElementToAppear(By.cssSelector(".modal-content"));
 		WebElement vesselName = driver.findElement(By.xpath("//input[@placeholder='Vessel Name']"));
 		vesselName.sendKeys(" Update");
@@ -87,6 +92,8 @@ public class VesselManagement extends Login {
 		saveBtn.click();
 		waitForWebElementToAppear(By.xpath("//span[text()='Saved successfully.']"));
 	}
+	
+
 
 	public void vesselDocUpload() throws FileNotFoundException, InterruptedException {
 //
@@ -123,7 +130,7 @@ public class VesselManagement extends Login {
 		
 		String monthXpath = "//table[@class='months']//span";
 		String year = "2026";
-		String month = "01";
+		String month = "02";
 		String date = "26";
 		String day = "//span[@class='ng-star-inserted' and text()='" + date + "']";
 		String nextButton = ".next";
@@ -142,8 +149,8 @@ public class VesselManagement extends Login {
 		WebElement selectStatus = driver.findElement(By.xpath("//span[text()='Eligible']"));
 		selectStatus.click();
 
-		WebElement mmaComment = driver.findElement(By.xpath("//textarea[contains(@placeholder,'MMA')]"));
-		mmaComment.sendKeys("This is a test MMA comment");
+		WebElement mmaComment = driver.findElement(By.xpath("//textarea[contains(@placeholder,'MAA')]"));
+		mmaComment.sendKeys("TEST");
 		WebElement uploadBtn = driver.findElement(By.xpath("//span[text()='Upload']"));
 		uploadBtn.click();
 		waitForWebElementToAppear(By.xpath("//span[text()='Document has been uploaded']"));
@@ -167,18 +174,18 @@ public class VesselManagement extends Login {
 //		docType.sendKeys("PDF");
 //		WebElement docName = driver.findElement(By.xpath("//app-text-input[@name='docName']//input"));
 //		docName.sendKeys("Test001");
-		String monthXpath = "//span[contains(@class,'p-monthpicker-month')]";
+		WebElement selectCalendar = driver.findElement(By.xpath("//bs-date-input[@name='docExpiryDate']//input"));
+		selectCalendar.click();
+		WebElement selectCurrentYear = driver.findElement(By.xpath("//button[@class='current']//span"));
+		selectCurrentYear.click();
+		
+		String monthXpath = "//table[@class='months']//span";
 		String year = "2026";
 		String month = "02";
-		String day = "25";
-		String fromDay = "//span[contains(@class, 'p-element') and not(contains(@class, 'p-disabled')) and text()='"
-				+ day + "']";
-		String nextButton = ".pi-chevron-right";
-		WebElement selectCalendar = driver.findElement(By.cssSelector(".p-datepicker-trigger"));
-		selectCalendar.click();
-		WebElement selectCurrentYear = driver.findElement(By.cssSelector(".p-datepicker-year "));
-		selectCurrentYear.click();
-		selectDate(monthXpath, year, month, fromDay, nextButton);
+		String date = "28";
+		String day = "//span[@class='ng-star-inserted' and text()='" + date + "']";
+		String nextButton = ".next";
+		datePicker(monthXpath, year, month, day, nextButton);
 //		WebElement reviewedByDropdown = driver
 //				.findElement(By.xpath("//label[text()='Document Reviewed By ']/parent::div//input"));
 //		reviewedByDropdown.click();
@@ -192,7 +199,7 @@ public class VesselManagement extends Login {
 		WebElement selectStatus = driver.findElement(By.xpath("//span[text()='Caution']"));
 		selectStatus.click();
 
-		WebElement mmaComment = driver.findElement(By.xpath("//textarea[contains(@placeholder,'MMA')]"));
+		WebElement mmaComment = driver.findElement(By.xpath("//textarea[contains(@placeholder,'MAA')]"));
 		mmaComment.sendKeys(" Updated");
 		WebElement saveBtn = driver.findElement(By.xpath("(//span[text()='Save'])[2]"));
 		saveBtn.click();
@@ -202,10 +209,13 @@ public class VesselManagement extends Login {
 	}
 
 	public void downloadDoc() {
-		waitForWebElementToAppear(By.cssSelector(".fa-pencil-alt"));
-		waitForWebElementToAppear(By.cssSelector(".flaticon2-download"));
-		WebElement downloadIcon = driver.findElement(By.cssSelector(".flaticon2-download"));
-		downloadIcon.click();
+		//Click on download icon
+		clickDesiredIcon(By.cssSelector(".flaticon2-download"));
+//		waitForWebElementToAppear(By.cssSelector(".fa-pencil-alt"));
+//		waitForWebElementToAppear(By.cssSelector(".flaticon2-download"));
+//		WebElement downloadIcon = driver.findElement(By.cssSelector(".flaticon2-download"));
+//		downloadIcon.click();
+		
 //		WebElement closeBtn = driver.findElement(By.xpath("//span[text()='Close']"));
 //		closeBtn.click();
 	}

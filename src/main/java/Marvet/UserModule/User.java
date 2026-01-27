@@ -1,9 +1,13 @@
 package Marvet.UserModule;
 
 import java.io.FileNotFoundException;
+import java.time.Duration;
 import java.util.ArrayList;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
 import Marvet.Login.Login;
 
 public class User extends Login {
@@ -66,10 +70,9 @@ public class User extends Login {
 //		ArrayList<String> data = excelRead("Add User");
 //		WebElement searchBox = driver.findElement(By.xpath("//input[@placeholder='Search user']"));
 //		searchBox.sendKeys(data.get(2));
-		waitForWebElementToAppear(By.cssSelector(".fa-trash-alt "));
+//		waitForWebElementToAppear(By.cssSelector(".fa-trash-alt "));
 		waitForWebElementToAppear(By.xpath("//span[text()=' Total: 1 items ']"));
-		WebElement deleteUser = driver.findElement(By.cssSelector(".fa-trash-alt "));
-		deleteUser.click();
+		clickDesiredIcon(By.xpath("//a[.//i[contains(@class, 'fa-trash-alt')]]"));
 		WebElement confirmBtn = driver.findElement(By.cssSelector(".swal2-confirm "));
 		confirmBtn.click();
 		waitForWebElementToAppear(By.xpath("//span[text()='Successfully deleted.']"));

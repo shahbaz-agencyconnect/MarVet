@@ -30,30 +30,34 @@ public class InspectorManagement extends Login {
 
 	public void inspectorDocUpload() throws InterruptedException {
 
-		waitForWebElementToAppear(By.cssSelector(".fa-file-alt"));
-		WebElement docIcon = driver.findElement(By.cssSelector(".fa-file-alt"));
-		docIcon.click();
+		clickDesiredIcon(By.xpath("//a[.//i[contains(@class, 'fa-file-alt')]]"));
+//		waitForWebElementToAppear(By.cssSelector(".fa-file-alt"));
+//		WebElement docIcon = driver.findElement(By.cssSelector(".fa-file-alt"));
+//		docIcon.click();
 		waitForWebElementToAppear(By.xpath("//span[text()='Upload Document']"));
 		WebElement uploadDocBtn = driver.findElement(By.xpath("//span[text()='Upload Document']"));
 		uploadDocBtn.click();
 		WebElement uploadFile = driver.findElement(By.xpath("//input[@id='undefined']"));
 		uploadFile.sendKeys("C:\\Users\\khans\\Desktop\\sample.pdf");
+		waitForWebElementToAppear(By.xpath("//app-text-input[@name='docType']//input"));
 		WebElement docType = driver.findElement(By.xpath("//app-text-input[@name='docType']//input"));
 		docType.sendKeys("PDF");
 		WebElement docName = driver.findElement(By.xpath("//app-text-input[@name='docName']//input"));
 		docName.sendKeys("Test001");
-		String monthXpath = "//span[contains(@class,'p-monthpicker-month')]";
+		WebElement expiryDatePicker = driver.findElement(By.xpath("//bs-date-input[@name='docExpiryDate']//input"));
+		expiryDatePicker.click();
+
+		WebElement selectCurrentYear = driver.findElement(By.xpath("//button[@class='current']//span"));
+		selectCurrentYear.click();
+
+		String monthXpath = "//table[@class='months']//span";
 		String year = "2026";
 		String month = "01";
-		String day = "30";
-		String fromDay = "//span[contains(@class, 'p-element') and not(contains(@class, 'p-disabled')) and text()='"
-				+ day + "']";
-		String nextButton = ".pi-chevron-right";
-		WebElement selectCalendar = driver.findElement(By.cssSelector(".p-datepicker-trigger"));
-		selectCalendar.click();
-		WebElement selectCurrentYear = driver.findElement(By.cssSelector(".p-datepicker-year "));
-		selectCurrentYear.click();
-		selectDate(monthXpath, year, month, fromDay, nextButton);
+		String date = "31";
+		String day = "//span[@class='ng-star-inserted' and text()='" + date + "']";
+		String nextButton = ".next";
+		datePicker(monthXpath, year, month, day, nextButton);
+		
 		WebElement reviewedByDropdown = driver.findElement(By.cssSelector(".ng-arrow-wrapper"));
 		reviewedByDropdown.click();
 		waitForWebElementToAppear(By.xpath("//span[contains(text(),'Rajeev')]"));
@@ -74,18 +78,20 @@ public class InspectorManagement extends Login {
 
 		WebElement docName = driver.findElement(By.xpath("//app-text-input[@name='docName']//input"));
 		docName.sendKeys(" New");
-		String monthXpath = "//span[contains(@class,'p-monthpicker-month')]";
+		WebElement expiryDatePicker = driver.findElement(By.xpath("//bs-date-input[@name='docExpiryDate']//input"));
+		expiryDatePicker.click();
+
+		WebElement selectCurrentYear = driver.findElement(By.xpath("//button[@class='current']//span"));
+		selectCurrentYear.click();
+
+		String monthXpath = "//table[@class='months']//span";
 		String year = "2026";
 		String month = "02";
-		String day = "20";
-		String fromDay = "//span[contains(@class, 'p-element') and not(contains(@class, 'p-disabled')) and text()='"
-				+ day + "']";
-		String nextButton = ".pi-chevron-right";
-		WebElement selectCalendar = driver.findElement(By.cssSelector(".p-datepicker-trigger"));
-		selectCalendar.click();
-		WebElement selectCurrentYear = driver.findElement(By.cssSelector(".p-datepicker-year "));
-		selectCurrentYear.click();
-		selectDate(monthXpath, year, month, fromDay, nextButton);
+		String date = "2";
+		String day = "//span[@class='ng-star-inserted' and text()='" + date + "']";
+		String nextButton = ".next";
+		datePicker(monthXpath, year, month, day, nextButton);
+		
 		WebElement saveBtn = driver.findElement(By.xpath("(//span[text()='Save'])[2]"));
 		saveBtn.click();
 		waitForWebElementToAppear(By.xpath("//span[text()='Document has been updated']"));

@@ -1,6 +1,7 @@
 package Marvet.TerminalChartererModule;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 
 import Marvet.Login.Login;
@@ -30,9 +31,7 @@ public class TerminalCharter extends Login {
 		WebElement searchBox = driver.findElement(By.xpath("//input[contains(@placeholder,'terminal')]"));
 		searchBox.sendKeys("Terminal 2");
 		waitForWebElementToAppear(By.xpath("//span[text()=' Total: 1 items ']"));
-		waitForWebElementToAppear(By.cssSelector(".fa-trash-alt "));
-		WebElement editIcon = driver.findElement(By.cssSelector(".fa-pen"));
-		editIcon.click();
+		clickDesiredIcon(By.xpath("//a[.//i[contains(@class, 'fa-pen')]]"));
 		waitForWebElementToAppear(By.cssSelector(".modal-content"));
 		WebElement terminalName = driver.findElement(By.xpath("//input[@placeholder='Name']"));
 		terminalName.sendKeys(" Update");
@@ -44,9 +43,50 @@ public class TerminalCharter extends Login {
 
 	public void deleteTerminal() {
 		waitForWebElementToAppear(By.xpath("//span[text()=' Total: 1 items ']"));
-		waitForWebElementToAppear(By.cssSelector(".fa-pen"));
-		WebElement deleteIcon = driver.findElement(By.cssSelector(".fa-trash-alt "));
-		deleteIcon.click();
+		clickDesiredIcon(By.xpath("//a[.//i[contains(@class, 'fa-trash-alt')]]"));
+		WebElement confirmBtn = driver.findElement(By.cssSelector(".swal2-confirm"));
+		confirmBtn.click();
+		waitForWebElementToAppear(By.xpath("//span[text()='Successfully deleted.']"));
+	}
+
+	public void addNewCharterer() {
+
+		WebElement addTerminal = driver.findElement(By.xpath("//button[text()=' Add Terminal or Charterer ']"));
+		addTerminal.click();
+
+		waitForWebElementToAppear(By.cssSelector(".modal-content"));
+
+		WebElement selectCharterer = driver.findElement(By.xpath("//label[text()=' Charterer ']"));
+		selectCharterer.click();
+
+		WebElement terminalName = driver.findElement(By.xpath("//input[@placeholder='Name']"));
+		terminalName.sendKeys("Charterer 2");
+
+		WebElement saveBtn = driver.findElement(By.xpath("//span[text()='Save']"));
+		saveBtn.click();
+		waitForWebElementToAppear(By.xpath("//span[text()='Successfully added']"));
+	}
+
+	public void editCharterer() {
+		waitForWebElementToAppear(By.xpath("//input[contains(@placeholder,'terminal')]"));
+		WebElement searchBox = driver.findElement(By.xpath("//input[contains(@placeholder,'terminal')]"));
+		searchBox.sendKeys(Keys.chord(Keys.CONTROL, "a"));
+		searchBox.sendKeys(Keys.BACK_SPACE);
+		searchBox.sendKeys("Charterer 2");
+		waitForWebElementToAppear(By.xpath("//span[text()=' Total: 1 items ']"));
+		clickDesiredIcon(By.xpath("//a[.//i[contains(@class, 'fa-pen')]]"));
+		waitForWebElementToAppear(By.cssSelector(".modal-content"));
+		WebElement terminalName = driver.findElement(By.xpath("//input[@placeholder='Name']"));
+		terminalName.sendKeys(" Update");
+
+		WebElement saveBtn = driver.findElement(By.xpath("//span[text()='Save']"));
+		saveBtn.click();
+		waitForWebElementToAppear(By.xpath("//span[text()='Saved successfully.']"));
+	}
+
+	public void deleteCharterer() {
+		waitForWebElementToAppear(By.xpath("//span[text()=' Total: 1 items ']"));
+		clickDesiredIcon(By.xpath("//a[.//i[contains(@class, 'fa-trash-alt')]]"));
 		WebElement confirmBtn = driver.findElement(By.cssSelector(".swal2-confirm"));
 		confirmBtn.click();
 		waitForWebElementToAppear(By.xpath("//span[text()='Successfully deleted.']"));

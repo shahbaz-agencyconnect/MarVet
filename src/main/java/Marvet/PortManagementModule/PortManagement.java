@@ -16,6 +16,7 @@ public class PortManagement extends Login {
 		WebElement addPort = driver.findElement(By.xpath("//button[text()=' Add Port ']"));
 		addPort.click();
 		waitForWebElementToAppear(By.cssSelector(".modal-content"));
+		waitForWebElementToAppear(By.xpath("//input[@placeholder='Name']"));
 		WebElement portName = driver.findElement(By.xpath("//input[@placeholder='Name']"));
 		portName.sendKeys("Royal Caribbean's");
 		WebElement portCode = driver.findElement(By.xpath("//input[@placeholder='Code']"));
@@ -105,7 +106,7 @@ public class PortManagement extends Login {
 		WebElement selectPortRating = driver.findElement(By.xpath("//span[text()='CAUTION']"));
 		selectPortRating.click();
 
-		WebElement mmaComment = driver.findElement(By.xpath("//app-textarea-input[@name='mmaComments']//textarea"));
+		WebElement mmaComment = driver.findElement(By.xpath("//app-textarea-input[@name='maaComments']//textarea"));
 		mmaComment.sendKeys("This is a test MMA comment");
 		WebElement uploadBtn = driver.findElement(By.xpath("//span[text()='Upload']"));
 		uploadBtn.click();
@@ -129,18 +130,18 @@ public class PortManagement extends Login {
 //		docType.sendKeys("PDF");
 //		WebElement docName = driver.findElement(By.xpath("//app-text-input[@name='docName']//input"));
 //		docName.sendKeys("Test001");
-		String monthXpath = "//span[contains(@class,'p-monthpicker-month')]";
+		WebElement selectCalendar = driver.findElement(By.xpath("//bs-date-input[@name='docExpiryDate']//input"));
+		selectCalendar.click();
+		WebElement selectCurrentYear = driver.findElement(By.xpath("//button[@class='current']//span"));
+		selectCurrentYear.click();
+		
+		String monthXpath = "//table[@class='months']//span";
 		String year = "2026";
 		String month = "02";
-		String day = "25";
-		String fromDay = "//span[contains(@class, 'p-element') and not(contains(@class, 'p-disabled')) and text()='"
-				+ day + "']";
-		String nextButton = ".pi-chevron-right";
-		WebElement selectCalendar = driver.findElement(By.cssSelector(".p-datepicker-trigger"));
-		selectCalendar.click();
-		WebElement selectCurrentYear = driver.findElement(By.cssSelector(".p-datepicker-year "));
-		selectCurrentYear.click();
-		selectDate(monthXpath, year, month, fromDay, nextButton);
+		String date = "15";
+		String day = "//span[@class='ng-star-inserted' and text()='" + date + "']";
+		String nextButton = ".next";
+		datePicker(monthXpath, year, month, day, nextButton);
 //		WebElement reviewedByDropdown = driver
 //				.findElement(By.xpath("//label[text()='Document Reviewed By ']/parent::div//input"));
 //		reviewedByDropdown.click();
@@ -155,7 +156,7 @@ public class PortManagement extends Login {
 //		WebElement selectStatus= driver.findElement(By.xpath("//span[text()='Caution']"));
 //		selectStatus.click();
 
-		WebElement mmaComment = driver.findElement(By.xpath("//app-textarea-input[@name='mmaComments']//textarea"));
+		WebElement mmaComment = driver.findElement(By.xpath("//app-textarea-input[@name='maaComments']//textarea"));
 		mmaComment.sendKeys(" Updated");
 		WebElement saveBtn = driver.findElement(By.xpath("(//span[text()='Save'])[2]"));
 		saveBtn.click();

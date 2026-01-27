@@ -17,6 +17,7 @@ import org.apache.poi.ss.util.NumberToTextConverter;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.By;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.WindowType;
@@ -246,5 +247,18 @@ public class Login {
 
 		// Days select
 		driver.findElement(By.xpath(selectDay)).click();
+	}
+	public void clickDesiredIcon(By locator) {
+	    int attempts = 0;
+	    while (attempts < 3) {
+	        try {
+	            driver.findElement(locator).click();
+	            break; // Exit loop if click is successful
+	        } catch (StaleElementReferenceException e) {
+	            // Wait a moment for the DOM to settle and try again
+	            try { Thread.sleep(500); } catch (InterruptedException ignored) {}
+	        }
+	        attempts++;
+	    }
 	}
 }
