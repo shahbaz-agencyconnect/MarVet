@@ -59,9 +59,9 @@ public class LandingPage extends AbstractComponent {
 
 	public void loginApplication(String userName, String passWord)
 			throws IOException, TesseractException, InterruptedException {
-
-		waitForWebElementToAppear(loadApp);
-		clientArealoginBtn.click();
+//
+//		waitForWebElementToAppear(loadApp);
+//		clientArealoginBtn.click();
 		waitForWebElementToAppear(username);
 		username.sendKeys(userName);
 		password.sendKeys(passWord);

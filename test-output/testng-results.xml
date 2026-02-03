@@ -2,12 +2,12 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2026-01-27T17:05:04 IST" name="Suite" finished-at="2026-01-27T17:10:03 IST" duration-ms="298940">
+  <suite started-at="2026-02-03T18:14:37 IST" name="Suite" finished-at="2026-02-03T18:17:11 IST" duration-ms="153970">
     <groups>
     </groups>
-    <test started-at="2026-01-27T17:05:04 IST" name="SmokeTest" finished-at="2026-01-27T17:10:03 IST" duration-ms="298940">
+    <test started-at="2026-02-03T18:14:37 IST" name="SmokeTest" finished-at="2026-02-03T18:17:11 IST" duration-ms="153970">
       <class name="Marvet.UserRoles.ChartererRole">
-        <test-method signature="charterUserRole()[pri:0, instance:Marvet.UserRoles.ChartererRole@44c03695]" started-at="2026-01-27T17:05:05 IST" name="charterUserRole" finished-at="2026-01-27T17:10:03 IST" duration-ms="298387" status="PASS">
+        <test-method signature="charterUserRole()[pri:0, instance:Marvet.UserRoles.ChartererRole@7e6f74c]" started-at="2026-02-03T18:14:37 IST" name="charterUserRole" finished-at="2026-02-03T18:17:11 IST" duration-ms="153692" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- charterUserRole -->

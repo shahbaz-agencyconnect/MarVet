@@ -144,6 +144,11 @@ public class Login {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(findBy));
 	}
+	
+	public void waitForWebElementToDisappear(By findBy) {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(findBy));
+	}
 
 	public ArrayList<String> excelRead(String sheetName) throws FileNotFoundException {
 		ArrayList<String> a = new ArrayList<String>();
@@ -261,4 +266,6 @@ public class Login {
 	        attempts++;
 	    }
 	}
+	
+
 }

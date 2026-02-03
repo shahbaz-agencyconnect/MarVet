@@ -3,12 +3,12 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="Marvet.Tests.CreateNewVessel">
+      <class name="Marvet.Tests.CreateNewInspection">
         <methods>
+          <include name="newInspection"/>
           <include name="launchApplication"/>
-          <include name="createVessel"/>
         </methods>
-      </class> <!-- Marvet.Tests.CreateNewVessel -->
+      </class> <!-- Marvet.Tests.CreateNewInspection -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

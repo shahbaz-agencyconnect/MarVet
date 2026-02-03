@@ -19,13 +19,12 @@ public class VesselManagement extends Login {
 		waitForWebElementToAppear(By.xpath("//span[text()='Vessel Management']"));
 		WebElement vesselMgmt = driver.findElement(By.xpath("//span[text()='Vessel Management']"));
 		vesselMgmt.click();
-
+		ArrayList<String> data = excelRead("Create Vessel");
 		waitForWebElementToAppear(By.xpath("//button[text()=' Add Vessel ']"));
 		WebElement addVessel = driver.findElement(By.xpath("//button[text()=' Add Vessel ']"));
 		addVessel.click();
 
 		waitForWebElementToAppear(By.cssSelector(".modal-content"));
-		ArrayList<String> data = excelRead("Create Vessel");
 		// Vessel Details
 		String name = data.get(0);
 		String imo = data.get(1);
@@ -81,10 +80,7 @@ public class VesselManagement extends Login {
 		
 		waitForWebElementToAppear(By.xpath("//span[text()=' Total: 1 items ']"));
 		clickDesiredIcon(By.xpath("//a[.//i[contains(@class, 'fa-pen')]]"));
-		
-//		waitForWebElementToAppear(By.cssSelector(".fa-ship "));
-//		WebElement editIcon = driver.findElement(By.cssSelector(".fa-pen"));
-//		editIcon.click();
+
 		waitForWebElementToAppear(By.cssSelector(".modal-content"));
 		WebElement vesselName = driver.findElement(By.xpath("//input[@placeholder='Vessel Name']"));
 		vesselName.sendKeys(" Update");
@@ -92,19 +88,9 @@ public class VesselManagement extends Login {
 		saveBtn.click();
 		waitForWebElementToAppear(By.xpath("//span[text()='Saved successfully.']"));
 	}
-	
-
 
 	public void vesselDocUpload() throws FileNotFoundException, InterruptedException {
-//
-//		waitForWebElementToAppear(By.xpath("//span[text()='Vessel Management']"));
-//		WebElement vesselMgmt = driver.findElement(By.xpath("//span[text()='Vessel Management']"));
-//		vesselMgmt.click();
-//
-//		ArrayList<String> data = excelRead("Create Vessel");
-//		String imo = data.get(1);
-//		WebElement searchBox = driver.findElement(By.xpath("//input[contains(@placeholder,'vessel name')]"));
-//		searchBox.sendKeys(imo);
+
 		waitForWebElementToAppear(By.xpath("//span[text()=' Total: 1 items ']"));
 		waitForWebElementToAppear(By.cssSelector(".fa-file-alt "));
 		WebElement docIcon = driver.findElement(By.cssSelector(".fa-file-alt"));
@@ -113,7 +99,7 @@ public class VesselManagement extends Login {
 		WebElement uploadDocBtn = driver.findElement(By.xpath("//span[text()='Upload Document']"));
 		uploadDocBtn.click();
 		WebElement uploadFile = driver.findElement(By.xpath("//input[@id='undefined']"));
-		uploadFile.sendKeys("C:\\Users\\khans\\Desktop\\sample.pdf");
+		uploadFile.sendKeys(System.getProperty("user.dir")+"\\Sample File\\sample.pdf");
 		WebElement docCategoryDropdown = driver
 				.findElement(By.xpath("//label[text()='Document Category ']/parent::div//input"));
 		docCategoryDropdown.click();
@@ -154,8 +140,7 @@ public class VesselManagement extends Login {
 		WebElement uploadBtn = driver.findElement(By.xpath("//span[text()='Upload']"));
 		uploadBtn.click();
 		waitForWebElementToAppear(By.xpath("//span[text()='Document has been uploaded']"));
-//		WebElement closeBtn = driver.findElement(By.xpath("//span[text()='Close']"));
-//		closeBtn.click();
+
 	}
 
 	public void editVesselDocument() throws InterruptedException {
@@ -163,17 +148,14 @@ public class VesselManagement extends Login {
 		WebElement editIcon = driver.findElement(By.cssSelector(".fa-pencil-alt"));
 		editIcon.click();
 		WebElement uploadFile = driver.findElement(By.xpath("//input[@id='undefined']"));
-		uploadFile.sendKeys("C:\\Users\\khans\\Desktop\\sample-Copy.pdf");
+		uploadFile.sendKeys(System.getProperty("user.dir")+"\\Sample File\\sample-Copy.pdf");
 		WebElement docCategoryDropdown = driver
 				.findElement(By.xpath("//label[text()='Document Category ']/parent::div//input"));
 		docCategoryDropdown.click();
 		WebElement selectDocCategory = driver
 				.findElement(By.xpath("//span[text()='License to Operate (Non-Brunei Flag Vessel)']"));
 		selectDocCategory.click();
-//		WebElement docType = driver.findElement(By.xpath("//app-text-input[@name='docType']//input"));
-//		docType.sendKeys("PDF");
-//		WebElement docName = driver.findElement(By.xpath("//app-text-input[@name='docName']//input"));
-//		docName.sendKeys("Test001");
+
 		WebElement selectCalendar = driver.findElement(By.xpath("//bs-date-input[@name='docExpiryDate']//input"));
 		selectCalendar.click();
 		WebElement selectCurrentYear = driver.findElement(By.xpath("//button[@class='current']//span"));
@@ -186,12 +168,7 @@ public class VesselManagement extends Login {
 		String day = "//span[@class='ng-star-inserted' and text()='" + date + "']";
 		String nextButton = ".next";
 		datePicker(monthXpath, year, month, day, nextButton);
-//		WebElement reviewedByDropdown = driver
-//				.findElement(By.xpath("//label[text()='Document Reviewed By ']/parent::div//input"));
-//		reviewedByDropdown.click();
-//		waitForWebElementToAppear(By.xpath("//span[contains(text(),'Rajeev')]"));
-//		WebElement selectReviewedBy = driver.findElement(By.xpath("//span[contains(text(),'Rajeev')]"));
-//		selectReviewedBy.click();
+
 		WebElement statusDropdown = driver.findElement(By.xpath("//label[text()='Status ']/parent::div//input"));
 		statusDropdown.click();
 
@@ -204,20 +181,12 @@ public class VesselManagement extends Login {
 		WebElement saveBtn = driver.findElement(By.xpath("(//span[text()='Save'])[2]"));
 		saveBtn.click();
 		waitForWebElementToAppear(By.xpath("//span[text()='Document has been updated']"));
-//		WebElement closeBtn = driver.findElement(By.xpath("//span[text()='Close']"));
-//		closeBtn.click();
+
 	}
 
 	public void downloadDoc() {
 		//Click on download icon
 		clickDesiredIcon(By.cssSelector(".flaticon2-download"));
-//		waitForWebElementToAppear(By.cssSelector(".fa-pencil-alt"));
-//		waitForWebElementToAppear(By.cssSelector(".flaticon2-download"));
-//		WebElement downloadIcon = driver.findElement(By.cssSelector(".flaticon2-download"));
-//		downloadIcon.click();
-		
-//		WebElement closeBtn = driver.findElement(By.xpath("//span[text()='Close']"));
-//		closeBtn.click();
 	}
 
 	public void deleteDocument() {
@@ -232,14 +201,6 @@ public class VesselManagement extends Login {
 	}
 
 	public void deleteVessel() {
-
-//		waitForWebElementToAppear(By.xpath("//span[text()='Vessel Management']"));
-//		WebElement vesselMgmt = driver.findElement(By.xpath("//span[text()='Vessel Management']"));
-//		vesselMgmt.click();
-
-//		waitForWebElementToAppear(By.xpath("//input[contains(@placeholder,'vessel name')]"));
-//		WebElement searchBox= driver.findElement(By.xpath("//input[contains(@placeholder,'vessel name')]"));
-//		searchBox.sendKeys("7856458");
 		waitForWebElementToAppear(By.xpath("//span[text()=' Total: 1 items ']"));
 		waitForWebElementToAppear(By.cssSelector(".fa-pen"));
 		WebElement deleteIcon = driver.findElement(By.cssSelector(".fa-trash-alt "));

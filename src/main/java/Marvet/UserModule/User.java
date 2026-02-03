@@ -16,11 +16,11 @@ public class User extends Login {
 		waitForWebElementToAppear(By.xpath("//span[text()='User']"));
 		WebElement userMenu = driver.findElement(By.xpath("//span[text()='User']"));
 		userMenu.click();
+		ArrayList<String> data = excelRead("Add User");
 		waitForWebElementToAppear(By.xpath("//button[text()=' Add User ']"));
 		WebElement addUserBtn = driver.findElement(By.xpath("//button[text()=' Add User ']"));
 		addUserBtn.click();
 		waitForWebElementToAppear(By.cssSelector(".modal-content"));
-		ArrayList<String> data = excelRead("Add User");
 		WebElement firstName = driver.findElement(By.xpath("//input[@placeholder='First Name']"));
 		WebElement lastName = driver.findElement(By.xpath("//input[@placeholder='Last Name']"));
 		WebElement userEmail = driver.findElement(By.xpath("//input[@placeholder='Email Address']"));
@@ -61,16 +61,24 @@ public class User extends Login {
 		waitForWebElementToAppear(By.cssSelector(".modal-content"));
 		WebElement firstName = driver.findElement(By.xpath("//input[@placeholder='First Name']"));
 		firstName.sendKeys(" Edit");
+		WebElement userRoleDropdown = driver
+				.findElement(By.xpath("//label[text()='User Role Group ']/parent::div//input"));
+		userRoleDropdown.click();
+		WebElement selectUserRole = driver
+				.findElement(By.xpath("//div[contains(@class,'ng-dropdown-panel-items')]//span[text()='Inspector']"));
+		selectUserRole.click();
 		WebElement saveBtn = driver.findElement(By.xpath("//span[text()='Save']"));
 		saveBtn.click();
 		waitForWebElementToAppear(By.xpath("//span[text()='Saved successfully.']"));
 	}
 
 	public void deleteUser() throws FileNotFoundException {
-//		ArrayList<String> data = excelRead("Add User");
-//		WebElement searchBox = driver.findElement(By.xpath("//input[@placeholder='Search user']"));
-//		searchBox.sendKeys(data.get(2));
-//		waitForWebElementToAppear(By.cssSelector(".fa-trash-alt "));
+		waitForWebElementToAppear(By.xpath("//span[text()='User']"));
+		WebElement userMenu = driver.findElement(By.xpath("//span[text()='User']"));
+		userMenu.click();
+		ArrayList<String> data = excelRead("Add User");
+		WebElement searchBox = driver.findElement(By.xpath("//input[@placeholder='Search user']"));
+		searchBox.sendKeys(data.get(2));
 		waitForWebElementToAppear(By.xpath("//span[text()=' Total: 1 items ']"));
 		clickDesiredIcon(By.xpath("//a[.//i[contains(@class, 'fa-trash-alt')]]"));
 		WebElement confirmBtn = driver.findElement(By.cssSelector(".swal2-confirm "));

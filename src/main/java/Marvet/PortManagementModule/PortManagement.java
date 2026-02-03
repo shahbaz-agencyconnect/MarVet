@@ -46,9 +46,8 @@ public class PortManagement extends Login {
 		WebElement searchBox = driver.findElement(By.xpath("//input[contains(@placeholder,'Search port')]"));
 		searchBox.sendKeys("Royal Caribbean");
 		waitForWebElementToAppear(By.xpath("//span[text()=' Total: 1 items ']"));
-		waitForWebElementToAppear(By.cssSelector(".fa-file-alt"));
-		WebElement editIcon = driver.findElement(By.xpath("//a[@title='Edit']"));
-		editIcon.click();
+		clickDesiredIcon(By.xpath("//a[.//i[contains(@class, 'fa-pen')]]"));
+
 		waitForWebElementToAppear(By.cssSelector(".modal-content"));
 		WebElement portName = driver.findElement(By.xpath("//label[text()='Name ']/parent::div/input"));
 		portName.sendKeys(" Update");
@@ -68,7 +67,7 @@ public class PortManagement extends Login {
 		WebElement uploadDocBtn = driver.findElement(By.xpath("//span[text()='Upload Document']"));
 		uploadDocBtn.click();
 		WebElement uploadFile = driver.findElement(By.xpath("//input[@id='undefined']"));
-		uploadFile.sendKeys("C:\\Users\\khans\\Desktop\\sample.pdf");
+		uploadFile.sendKeys(System.getProperty("user.dir")+"\\Sample File\\sample.pdf");
 		WebElement docTypeDropdown = driver
 				.findElement(By.xpath("//label[text()='Document Type ']/parent::div//input"));
 		docTypeDropdown.click();
@@ -120,7 +119,7 @@ public class PortManagement extends Login {
 		WebElement editIcon = driver.findElement(By.cssSelector(".fa-pencil-alt"));
 		editIcon.click();
 		WebElement uploadFile = driver.findElement(By.xpath("//input[@id='undefined']"));
-		uploadFile.sendKeys("C:\\Users\\khans\\Desktop\\sample-Copy.pdf");
+		uploadFile.sendKeys(System.getProperty("user.dir")+"\\Sample File\\sample-Copy.pdf");
 		WebElement docTypeDropdown = driver
 				.findElement(By.xpath("//label[text()='Document Type ']/parent::div//input"));
 		docTypeDropdown.click();
@@ -158,26 +157,20 @@ public class PortManagement extends Login {
 
 		WebElement mmaComment = driver.findElement(By.xpath("//app-textarea-input[@name='maaComments']//textarea"));
 		mmaComment.sendKeys(" Updated");
-		WebElement saveBtn = driver.findElement(By.xpath("(//span[text()='Save'])[2]"));
-		saveBtn.click();
+		clickDesiredIcon(By.xpath("//div[@class='modal-footer']//span[text()='Save']"));
+//		WebElement saveBtn = driver.findElement();
+//		saveBtn.click();
 		waitForWebElementToAppear(By.xpath("//span[text()='Document has been updated']"));
 //		WebElement closeBtn = driver.findElement(By.xpath("//span[text()='Close']"));
 //		closeBtn.click();
 	}
 
 	public void downloadDoc() {
-		waitForWebElementToAppear(By.cssSelector(".fa-pencil-alt"));
-		waitForWebElementToAppear(By.cssSelector(".flaticon2-download"));
-		WebElement downloadIcon = driver.findElement(By.cssSelector(".flaticon2-download"));
-		downloadIcon.click();
-//		WebElement closeBtn = driver.findElement(By.xpath("//span[text()='Close']"));
-//		closeBtn.click();
+		clickDesiredIcon(By.cssSelector(".flaticon2-download"));
 	}
 
 	public void deleteDocument() {
-		waitForWebElementToAppear(By.cssSelector(".fa-trash"));
-		WebElement deleteIcon = driver.findElement(By.cssSelector(".fa-trash"));
-		deleteIcon.click();
+		clickDesiredIcon(By.cssSelector(".fa-trash"));
 		WebElement confirmBtn = driver.findElement(By.cssSelector(".swal2-confirm"));
 		confirmBtn.click();
 		waitForWebElementToAppear(By.xpath("//span[text()='Successfully deleted.']"));

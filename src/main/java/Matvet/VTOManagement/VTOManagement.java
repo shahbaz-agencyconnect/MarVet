@@ -29,7 +29,8 @@ public class VTOManagement extends Login {
 		WebElement selectClientGrp = driver.findElement(By.xpath("//span[text()='VTO']"));
 		selectClientGrp.click();
 		WebElement chooseFileBtn = driver.findElement(By.xpath("//input[@type='file']"));
-		chooseFileBtn.sendKeys("C:\\Users\\khans\\Desktop\\sample.jpg");
+		chooseFileBtn.sendKeys(System.getProperty("user.dir")+"\\Sample File\\sample.jpg");
+//		chooseFileBtn.sendKeys("C:\\Users\\khans\\Desktop\\sample.jpg");
 
 		WebElement docCheckbox = driver.findElement(By.cssSelector(".form-check-input"));
 		docCheckbox.click();		
@@ -66,7 +67,7 @@ public class VTOManagement extends Login {
 		selectVTORating.click();
 		
 		WebElement uploadFile = driver.findElement(By.xpath("//input[@id='undefined']"));
-		uploadFile.sendKeys("C:\\Users\\khans\\Desktop\\sample.pdf");
+		uploadFile.sendKeys(System.getProperty("user.dir")+"\\Sample File\\sample.pdf");
 		
 		WebElement mmaComment = driver.findElement(By.xpath("//textarea[@placeholder='Enter MAA comments']"));
 		mmaComment.sendKeys("This is a test MMA comment");
@@ -81,9 +82,7 @@ public class VTOManagement extends Login {
 		WebElement searchBox = driver.findElement(By.xpath("//input[contains(@placeholder,'Search client')]"));
 		searchBox.sendKeys("Mobile Shipping");
 		waitForWebElementToAppear(By.xpath("//span[text()=' Total: 1 items ']"));
-		waitForWebElementToAppear(By.cssSelector(".fa-trash-alt"));
-		WebElement editIcon = driver.findElement(By.cssSelector(".fa-pen"));
-		editIcon.click();
+		clickDesiredIcon(By.xpath("//a[.//i[contains(@class, 'fa-pen')]]"));
 		
 		waitForWebElementToAppear(By.cssSelector(".modal-content"));
 		WebElement vtoName = driver.findElement(By.xpath("//input[@placeholder='VTO Name']"));
