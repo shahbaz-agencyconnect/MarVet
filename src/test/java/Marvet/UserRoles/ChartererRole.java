@@ -3,11 +3,13 @@ package Marvet.UserRoles;
 import java.io.FileNotFoundException;
 import org.testng.annotations.Test;
 
+import Marvet.ChangePassword.ChangePassword;
 import Marvet.ClearanceManagementModule.ClearanceManagement;
 import Marvet.ClientGroup.ClientGroup;
 import Marvet.InspectionManagement.InspectionManagement;
 import Marvet.InspectorManagementModule.InspectorManagement;
 import Marvet.Login.Login;
+import Marvet.OutOfOffice.OutOfOffice;
 import Marvet.PortManagementModule.PortManagement;
 import Marvet.RequestService.RequestService;
 import Marvet.Settings.InspectionTemplate;
@@ -29,8 +31,12 @@ public class ChartererRole extends Login {
 
 		// User Module
 		User user = new User();
-//		user.addNewUser();
-//		user.editUser();
+		user.addNewUser();
+		user.editUser();
+		
+		//Out Of Office Delegation
+		OutOfOffice outOffice = new OutOfOffice();
+		outOffice.enableOutOfOffice();
 
 		// Inspector Management Module
 		InspectorManagement inspectionManagement = new InspectorManagement();
@@ -39,7 +45,7 @@ public class ChartererRole extends Login {
 //		inspectionManagement.editInspectorDocument();
 //		inspectionManagement.downloadDoc();
 //		inspectionManagement.deleteDocument();
-//		user.deleteUser();
+		user.deleteUser();
 
 		// Vessel Management Module
 		VesselManagement vesselManage = new VesselManagement();
@@ -106,14 +112,17 @@ public class ChartererRole extends Login {
 		
 		//Inspection Type Module
 		InspectionType inspectionType = new InspectionType();
-		inspectionType.addInspectionType();
-		inspectionType.editInspectionType();
-		inspectionType.deleteInspectionType();
+//		inspectionType.addInspectionType();
+//		inspectionType.editInspectionType();
+//		inspectionType.deleteInspectionType();
 	
 		//Inspection Template Module
 		InspectionTemplate inspectionTemplate = new InspectionTemplate();
-		inspectionTemplate.addInspectionTemplate();		
-		inspectionTemplate.editInspectionTemplate();
-		inspectionTemplate.deleteInspectionTemplate();
+//		inspectionTemplate.addInspectionTemplate();		
+//		inspectionTemplate.editInspectionTemplate();
+//		inspectionTemplate.deleteInspectionTemplate();
+		
+		ChangePassword pass = new ChangePassword();
+		pass.resetPasssword();
 	}
 }

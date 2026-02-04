@@ -21,14 +21,14 @@ public class User extends Login {
 		WebElement addUserBtn = driver.findElement(By.xpath("//button[text()=' Add User ']"));
 		addUserBtn.click();
 		waitForWebElementToAppear(By.cssSelector(".modal-content"));
+		waitForWebElementToAppear(By.xpath("//input[@placeholder='First Name']"));
 		WebElement firstName = driver.findElement(By.xpath("//input[@placeholder='First Name']"));
 		WebElement lastName = driver.findElement(By.xpath("//input[@placeholder='Last Name']"));
 		WebElement userEmail = driver.findElement(By.xpath("//input[@placeholder='Email Address']"));
-
-		WebElement client = driver.findElement(By.xpath("//div[text()='Search for client...']/parent::div//input"));
 		firstName.sendKeys(data.get(0));
 		lastName.sendKeys(data.get(1));
 		userEmail.sendKeys(data.get(2));
+		WebElement client = driver.findElement(By.xpath("//div[text()='Search for client...']/parent::div//input"));
 		client.click();
 		waitForWebElementToAppear(By.xpath("//div[contains(@id,'remote-select')]//span[text()='" + data.get(3) + "']"));
 		WebElement selectClient = driver
@@ -42,10 +42,11 @@ public class User extends Login {
 		WebElement selectTerminal = driver
 				.findElement(By.xpath("//span[contains(@class,'ng-option-label') and text()='" + data.get(4) + "']"));
 		selectTerminal.click();
-		WebElement uncheckPwdReset = driver.findElement(By.xpath("//span[text()=' Password reset is required ']"));
+		//Uncheck Password Reset
+//		WebElement uncheckPwdReset = driver.findElement(By.xpath("//span[text()=' Password reset is required ']"));
+//		uncheckPwdReset.click();
 
 		WebElement saveBtn = driver.findElement(By.xpath("//span[text()='Save']"));
-		uncheckPwdReset.click();
 		saveBtn.click();
 		waitForWebElementToAppear(By.xpath("//span[text()='Saved successfully.']"));
 	}
@@ -54,10 +55,13 @@ public class User extends Login {
 		ArrayList<String> data = excelRead("Add User");
 		WebElement searchBox = driver.findElement(By.xpath("//input[@placeholder='Search user']"));
 		searchBox.sendKeys(data.get(2));
-		waitForWebElementToAppear(By.cssSelector(".fa-pen"));
+//		waitForWebElementToAppear(By.cssSelector(".fa-pen"));
 		waitForWebElementToAppear(By.xpath("//span[text()=' Total: 1 items ']"));
-		WebElement editIcon = driver.findElement(By.cssSelector(".fa-pen"));
-		editIcon.click();
+		
+		clickDesiredIcon(By.cssSelector(".fa-pen"));
+//		WebElement editIcon = driver.findElement(By.cssSelector(".fa-pen"));
+//		editIcon.click();
+		
 		waitForWebElementToAppear(By.cssSelector(".modal-content"));
 		WebElement firstName = driver.findElement(By.xpath("//input[@placeholder='First Name']"));
 		firstName.sendKeys(" Edit");
@@ -73,12 +77,12 @@ public class User extends Login {
 	}
 
 	public void deleteUser() throws FileNotFoundException {
-		waitForWebElementToAppear(By.xpath("//span[text()='User']"));
-		WebElement userMenu = driver.findElement(By.xpath("//span[text()='User']"));
-		userMenu.click();
-		ArrayList<String> data = excelRead("Add User");
-		WebElement searchBox = driver.findElement(By.xpath("//input[@placeholder='Search user']"));
-		searchBox.sendKeys(data.get(2));
+//		waitForWebElementToAppear(By.xpath("//span[text()='User']"));
+//		WebElement userMenu = driver.findElement(By.xpath("//span[text()='User']"));
+//		userMenu.click();
+//		ArrayList<String> data = excelRead("Add User");
+//		WebElement searchBox = driver.findElement(By.xpath("//input[@placeholder='Search user']"));
+//		searchBox.sendKeys(data.get(2));
 		waitForWebElementToAppear(By.xpath("//span[text()=' Total: 1 items ']"));
 		clickDesiredIcon(By.xpath("//a[.//i[contains(@class, 'fa-trash-alt')]]"));
 		WebElement confirmBtn = driver.findElement(By.cssSelector(".swal2-confirm "));
