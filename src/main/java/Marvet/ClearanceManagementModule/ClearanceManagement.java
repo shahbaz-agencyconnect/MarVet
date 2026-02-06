@@ -20,10 +20,10 @@ public class ClearanceManagement extends Login {
 		Thread.sleep(2000);
 
 		WebElement searchBox = driver.findElement(By.xpath("//input[@formcontrolname='filterText']"));
-		searchBox.sendKeys("9713129");
+		searchBox.sendKeys("1232222");
 
-		WebElement searchIcon = driver.findElement(By.xpath("//button[@type='submit']"));
-		searchIcon.click();
+//		WebElement searchIcon = driver.findElement(By.xpath("//button[@type='submit']"));
+//		searchIcon.click();
 		Thread.sleep(2000);
 
 		WebElement actionBtn = driver.findElement(By.id("dropdownButton"));
@@ -46,6 +46,8 @@ public class ClearanceManagement extends Login {
 		acceptBtn.click();
 
 		WebElement confirmBtn = driver.findElement(By.cssSelector(".swal2-confirm"));
-//		confirmBtn.click();
+		confirmBtn.click();
+		WebElement dashboard = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[text()=' Dashboard ']")));
+		dashboard.click();
 	}
 }

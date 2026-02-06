@@ -10,8 +10,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import Marvet.Login.Login;
 
 public class InspectionTemplate extends Login {
-	public void addInspectionTemplate() {
-
+	public void addInspectionTemplate() throws InterruptedException {
+		Thread.sleep(5000);
 		WebElement openInspectionType = driver.findElement(By.xpath("//a[text()=' Inspection Template ']"));
 		openInspectionType.click();
 

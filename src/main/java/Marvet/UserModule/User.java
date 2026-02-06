@@ -77,12 +77,12 @@ public class User extends Login {
 	}
 
 	public void deleteUser() throws FileNotFoundException {
-//		waitForWebElementToAppear(By.xpath("//span[text()='User']"));
-//		WebElement userMenu = driver.findElement(By.xpath("//span[text()='User']"));
-//		userMenu.click();
-//		ArrayList<String> data = excelRead("Add User");
-//		WebElement searchBox = driver.findElement(By.xpath("//input[@placeholder='Search user']"));
-//		searchBox.sendKeys(data.get(2));
+		waitForWebElementToAppear(By.xpath("//span[text()='User']"));
+		WebElement userMenu = driver.findElement(By.xpath("//span[text()='User']"));
+		userMenu.click();
+		ArrayList<String> data = excelRead("Add User");
+		WebElement searchBox = driver.findElement(By.xpath("//input[@placeholder='Search user']"));
+		searchBox.sendKeys(data.get(2));
 		waitForWebElementToAppear(By.xpath("//span[text()=' Total: 1 items ']"));
 		clickDesiredIcon(By.xpath("//a[.//i[contains(@class, 'fa-trash-alt')]]"));
 		WebElement confirmBtn = driver.findElement(By.cssSelector(".swal2-confirm "));

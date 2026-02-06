@@ -116,20 +116,16 @@ public class InspectionManagement extends Login {
 		waitForWebElementToAppear(By.xpath("//span[text()='Saved successfully.']"));
 	}
 
-	public void deleteInspection() throws FileNotFoundException {
+	public void deleteInspection() throws FileNotFoundException, InterruptedException {
 		ArrayList<String> data = excelRead("Add Inspection");
 		String vesselName = data.get(3);
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		waitForWebElementToAppear(By.xpath("//input[contains(@placeholder,'inspection')]"));
+		WebElement searchBox = driver.findElement(By.xpath("//input[contains(@placeholder,'inspection')]"));
+		searchBox.sendKeys(vesselName);
+		Thread.sleep(5000);
+		waitForWebElementToAppear(By.xpath("//span[text()=' Total: 1 items ']"));
 
-		WebElement deleteButton = wait
-				.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//span[contains(text(), '" + vesselName
-						+ "')]/ancestor::tr//button[i[contains(@class, 'fa-trash-alt')]]")));
-
-		JavascriptExecutor js = (JavascriptExecutor) driver;
-
-		js.executeScript("arguments[0].scrollIntoView({block: 'center', inline: 'center'});", deleteButton);
-
-		js.executeScript("arguments[0].click();", deleteButton);
+		clickDesiredIcon(By.xpath("//button[@title='Delete']"));
 
 		WebElement confirmBtn = driver.findElement(By.cssSelector(".swal2-confirm"));
 		confirmBtn.click();

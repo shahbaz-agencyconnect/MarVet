@@ -18,13 +18,13 @@ public class ChangePassword extends Login{
 		waitForWebElementToAppear(By.id("CurrentPassword"));
 				
 		WebElement oldPassField=driver.findElement(By.id("CurrentPassword"));
-		oldPassField.sendKeys("Admin@123");
+		oldPassField.sendKeys("123qwe");
 		
 		WebElement newPassField=driver.findElement(By.id("NewPassword"));
-		newPassField.sendKeys("123qwe");
+		newPassField.sendKeys("Admin@123");
 		
 		WebElement confirmPassField=driver.findElement(By.id("NewPasswordRepeat"));
-		confirmPassField.sendKeys("123qwe");
+		confirmPassField.sendKeys("Admin@123");
 		
 		WebElement updateBtn=driver.findElement(By.xpath("//span[text()='Update']"));
 		updateBtn.click();

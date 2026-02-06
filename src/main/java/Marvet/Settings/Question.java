@@ -1,18 +1,28 @@
 package Marvet.Settings;
 
+import java.time.Duration;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import Marvet.Login.Login;
 
 public class Question extends Login{
-	public void addQuestion() {
+	public void addQuestion() throws InterruptedException {
+		Thread.sleep(5000);
 		WebElement openQuestion = driver.findElement(By.xpath("//a[text()=' Question ']"));
 		openQuestion.click();
-		
-		waitForWebElementToAppear(By.xpath("//button[text()=' Add Question ']"));
-		WebElement addQuestionBtn = driver.findElement(By.xpath("//button[text()=' Add Question ']"));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+		WebElement addQuestionBtn = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[text()=' Add Question ']")));
 		addQuestionBtn.click();
+		
+//		waitForWebElementToAppear(By.xpath("//button[text()=' Add Question ']"));
+//		clickDesiredIcon(By.xpath("//button[text()=' Add Question ']"));
+//		WebElement addQuestionBtn = driver.findElement(By.xpath("//button[text()=' Add Question ']"));
+//		addQuestionBtn.click();
 		waitForWebElementToAppear(By.cssSelector(".modal-content"));
 		
 		WebElement questionName = driver.findElement(By.xpath("//textarea[@placeholder='Question']"));

@@ -45,7 +45,7 @@ public class Login {
 		WebElement password = driver.findElement(By.id("password"));
 		WebElement loginBtn = driver.findElement(By.xpath("//button[text()='Log in']"));
 		username.sendKeys("zamri.jumaat@yopmail.com");
-		password.sendKeys("Admin@123");
+		password.sendKeys("123qwe");
 		loginBtn.click();
 		WebDriverWait loginWait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		boolean mfa = false;

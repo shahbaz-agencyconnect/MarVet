@@ -3,12 +3,11 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="Marvet.Tests.CreateNewInspection">
+      <class name="Marvet.UserRoles.RunSampleMethods">
         <methods>
-          <include name="newInspection"/>
-          <include name="launchApplication"/>
+          <include name="charterUserRole"/>
         </methods>
-      </class> <!-- Marvet.Tests.CreateNewInspection -->
+      </class> <!-- Marvet.UserRoles.RunSampleMethods -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

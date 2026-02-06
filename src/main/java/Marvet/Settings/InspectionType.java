@@ -7,12 +7,8 @@ import Marvet.Login.Login;
 
 public class InspectionType extends Login{
 	
-	public void addInspectionType() {		
-
-		waitForWebElementToAppear(By.cssSelector(".fa-chevron-down"));
-		WebElement settingsMenu = driver.findElement(By.cssSelector(".fa-chevron-down"));
-		settingsMenu.click();
-		
+	public void addInspectionType() throws InterruptedException {		
+		Thread.sleep(5000);
 		WebElement openInspectionType= driver.findElement(By.xpath("//a[text()=' Inspection Type ']"));
 		openInspectionType.click();
 		
@@ -20,7 +16,8 @@ public class InspectionType extends Login{
 		WebElement addInspectionTypeBtn = driver.findElement(By.xpath("//button[text()=' Add Inspection Type ']"));
 		addInspectionTypeBtn.click();
 		waitForWebElementToAppear(By.cssSelector(".modal-content"));
-		
+		waitForWebElementToAppear(By.xpath("//input[@placeholder='Name']"));
+		Thread.sleep(1000);
 		WebElement name = driver.findElement(By.xpath("//input[@placeholder='Name']"));
 		name.sendKeys("Test Inspection Type");
 		

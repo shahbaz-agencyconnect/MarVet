@@ -202,9 +202,9 @@ public class VesselManagement extends Login {
 
 	public void deleteVessel() {
 		waitForWebElementToAppear(By.xpath("//span[text()=' Total: 1 items ']"));
-		waitForWebElementToAppear(By.cssSelector(".fa-pen"));
-		WebElement deleteIcon = driver.findElement(By.cssSelector(".fa-trash-alt "));
-		deleteIcon.click();
+		clickDesiredIcon(By.xpath("//a[.//i[contains(@class, 'fa-trash-alt')]]"));
+//		WebElement deleteIcon = driver.findElement(By.cssSelector(".fa-trash-alt "));
+//		deleteIcon.click();
 		WebElement confirmBtn = driver.findElement(By.cssSelector(".swal2-confirm"));
 		confirmBtn.click();
 		waitForWebElementToAppear(By.xpath("//span[text()='Successfully deleted.']"));
